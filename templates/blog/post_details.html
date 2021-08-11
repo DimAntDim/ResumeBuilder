@@ -1,0 +1,18 @@
+<div class='post-card-wrapper'>
+	<div class='post-card-img'>
+		<img src="{{ post.image.url }}">
+	</div>
+	<div class='post-card-content'>
+		<div class='post-created-updated'>
+			<h5>Created: {{post.create_date}}</h5>
+			<h5>Last updated: {{post.update}}</h5>
+		</div>
+		<div class='post-title'>
+			<h2>{{post.title}}</h2>
+		</div>
+		<div class='post-author'>
+			<h3>Autor {{ post.creator }}
+		</div>
+        
+	</div>
+</div>

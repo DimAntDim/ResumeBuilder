@@ -1,0 +1,22 @@
+{% extends 'home_page.html' %}
+{% block content %}   
+<div class="auth">
+    <div class="form-box">
+        <div class="button-box">
+            <div id="btn-register"></div>      
+            <a class="toggle-btn" href="{% url 'login' %}">LogIn</a>
+                <a class="toggle-btn" href="{% url 'register' %}">Register</a>    
+        </div>
+    <form class='data-input' method='POST' action="{% url 'register' %}">
+        {% csrf_token %}
+        <hr>
+        {{ form.email }}
+        {{ form.password1 }}
+        {{ form.password2 }} 
+        <hr>
+        <input id='btn-submit' type='submit' value='Register'>     
+        <hr>  
+    </form>
+    </div> 
+</div>
+{% endblock content %}    

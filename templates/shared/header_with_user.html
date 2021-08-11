@@ -1,0 +1,45 @@
+{% load static %}
+<header class="header">
+  <nav class="navbar">
+        <a href="/" class="nav-logo">
+        <div class='logo-text-left'>
+            The Wall
+        </div>
+        </a>
+        <ul class="nav-menu">
+            <div class='user-icon'>
+            </div>
+            </li>
+            <li>
+                <div id="profile_picture">
+                    {% if request.user.profile_image.url %}
+                      <img  src="{{ request.user.profile_image.url }}">
+                    {% else %}
+                      <img  src="{% static 'img/avatar.jpg' %}">
+                    {% endif %}
+                    <a>
+                </div>
+            </li>
+          <li class="nav-item">
+              <a href="{% url 'user home page' request.user.id %}" class="nav-link">
+                {% if request.user.profile.first_name %}
+                  Hello, {{ request.user.profile.first_name }}
+                {% else %} 
+                  Hello, {{ request.user }}
+                {% endif %} 
+              </a>
+          </li>
+        </div>
+        <div class='logout-icon'>        
+          <a href="{% url 'logout' %}"><img src="{% static 'img/switch-off.jpg' %}" alt='Logoff' ></a>
+        </div>
+      </ul>
+    
+    <div class="hamburger">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </div>
+
+  </nav>
+</header>

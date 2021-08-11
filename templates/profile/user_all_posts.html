@@ -1,0 +1,15 @@
+{% extends 'profile/user_home_page.html' %}
+{% block user_content %}
+    <div class="user-content-wrapper">
+        {% for post in posts %}
+            <div class="card">
+            <img src="{{post.image.url}}" alt="Post img" style="width:50%">
+            <h1>{{post.author}}</h1>
+            <p class="price">{{post.create_date}}</p>
+            <p>{{post.description}}</p>
+            <p><input class="card-button-edit" type="button" href="#" value="Edit"></p>
+            <p><input class="card-button-delete" type="button" href="#" value="Delete"></p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'profile/user_home_page.html' %}
+{% block content %}   
+<div class="auth">
+    <div style="font-size: 20px; display: flex; justify-content: space-around;">Complete your profile</div>
+    <h2>
+    <form class='data-input' method='POST' action="{% url 'complete profile' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <hr>
+        {{ form.as_p }}
+        <hr>
+        <input id='btn-submit' type='submit' value='Complete'>     
+        <hr>  
+    </form>
+    </div> 
+    </h2>
+</div>
+{% endblock content %}  

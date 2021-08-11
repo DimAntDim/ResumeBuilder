@@ -1,0 +1,35 @@
+{% load static %}
+<header class="header">
+  <nav class="navbar">
+        <a href="/" class="nav-logo">
+        <div class='logo-text-left'>
+            The Wall
+        </div>
+        </a>
+        <ul class="nav-menu">
+            <div class='user-icon'>
+            </div>
+            <li class="nav-item">
+                {% if request.user.is_autenticated %}
+                    <a href="{% url 'create post' %}" class="nav-link">Create Post</a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="nav-link">Create Post</a>
+                {% endif %}
+            </li>
+            <li>
+                <div id="profile_picture">
+                    <img  src="{% static 'img/avatar.jpg' %}">
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'login' %}" class="nav-link">My Account</a>
+            </li>
+        </ul>
+    <div class="hamburger">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </div>
+    
+  </nav>
+</header>
