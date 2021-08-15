@@ -9,5 +9,6 @@ urlpatterns = [
     path('', include('common.urls')),
     path('account/', include('account_auth.urls')),
     path('profile/', include('accounts.urls')),
+    path('templates/', include('template_manager.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

@@ -1,0 +1,237 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+nav .logoff img{
+    height: 30px;
+    width: 30px; 
+}
+
+html {
+    font-size: 62.5%;
+    font-family: 'Roboto', sans-serif;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.header{
+    border-bottom: 1px solid #87bbff;
+}
+
+.navbar {
+    background-color: #87bbff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+}
+
+.hamburger {
+    display: none;
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    background-color: #101010;
+}
+
+.nav-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 25px;
+}
+
+.nav-item {
+    margin-left: 5rem;   
+    
+    border-radius: 8px;
+}
+
+.nav-link{
+    padding: 1px 15px;
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: #87bbff;
+    background-color: white;
+    font-weight: bold;
+    border: 3px solid white;
+    border-radius: 8px;
+}
+
+.nav-link:hover {
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: white;
+    font-weight: bold;
+    border: 3px solid white;
+    background-color: rgba(255, 255, 255, 0);
+    transition: 0.8s;
+}
+
+.nav-item:hover {
+    margin-left: 5rem;  
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0);
+    
+}
+
+.nav-logo {
+    font-size: 2.1rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-left: 25px;
+}
+
+@media only screen and (max-width: 768px) {
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 5rem;
+        flex-direction: column;
+        background-color:#87bbff;
+        width: 100%;
+        border-radius: 10px;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow:
+            0 10px 27px rgba(0, 0, 0, 0.05);
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-item {
+        margin: 2.5rem 0;
+    }
+
+    .hamburger {
+        display: block;
+        cursor: pointer;
+    }
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+}
+
+/* Login and Register form */
+
+.auth {
+    height: 100%;
+    width: 100%;   
+}
+.form-box {
+    width: 380px;
+    position: relative;
+    margin: 6% auto;
+    background: #87bbff;
+    padding: 5px;  
+    border-radius: 6px;
+}
+
+.button-box {
+    display: flex;
+    width: 220px;
+    height: 30px;
+    margin: 20px auto;
+    position: relative;
+    box-shadow: 0 0 20px 9px white;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 10pt;
+    font-weight: bold;
+    
+}
+
+.button-box a {
+    color: white;
+}
+
+.toggle-btn {
+    padding: 7px 30px;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    position: relative;
+}
+
+#btn-login {
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 120px;
+    height: 100%;
+    background: linear-gradient(to right, rgb(255, 123, 35),  rgb(245, 178, 33));
+    border-radius: 20px;
+}
+
+#btn-register {
+    top: 0;
+    left: 105px;
+    position: absolute;
+    width: 115px;
+    height: 100%;
+    background: linear-gradient(to left, rgb(255, 123, 35),  rgb(245, 178, 33));
+    border-radius: 20px;
+}
+
+#btn-submit {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 115px;
+    height: 20px;
+    cursor: pointer;
+    background: linear-gradient(to left, rgb(255, 123, 35),  rgb(245, 178, 33));
+    border-radius: 20px;
+    transition: .5s;
+    color: white;
+}
+
+#btn-submit:hover {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 115px;
+    height: 20px;
+    cursor: pointer;
+    background: linear-gradient(to right, rgb(255, 123, 35),  rgb(245, 178, 33));
+    border-radius: 20px;
+    transition: .5s;
+    color: white;
+}
+
+
+.data-input {
+    text-align: center;
+}
+
+.input-field {
+    text-align: center;
+    margin: 10px 10px;
+    width: 60%;
+    left: 30px;
+}
+

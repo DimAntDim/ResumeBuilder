@@ -1,9 +1,17 @@
 {% extends 'shared/base.html' %}
+{% load static %}
 {%block title%} Welcome {% endblock %}
 
 
-{% block content %} 
-    
+{% block content %}
+    <div class="backround-img">
+        <img src={% static 'img/background/workspace-desk.jpg' %}>
+    </div>
+    <div class="text">
+            <h1>Resume Builder</h1>
+            <h2>Make a Resume Online—Quick and Easy</h2>
+            <input id='btn-submit' type='submit' value="Make My Resume">
+    </div
 {% endblock %}
 
 {% include "shared/footer.html "%} 

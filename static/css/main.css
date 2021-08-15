@@ -22,11 +22,12 @@ a {
 
 
 .header{
-    border-bottom: 2px solid #00000000;
+    font-family: initial;
 }
 
 .navbar {
-    background-color: #ffffff;
+    height: 16%;
+    background-color: #5f5f5f;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -42,7 +43,6 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 10px;
     margin-right: 30px;
 }
 
@@ -59,43 +59,42 @@ a {
     border-radius: 50%;
 }
 .nav-link{
-    padding: 1px 15px;
-    font-size: 1.6rem;
+    padding: 1px 2px;
+    font-size: 25px;
     font-weight: 400;
-    color: #ff0000;
-    background-color: rgba(255, 0, 0, 0);
+    color: #e7e7e7;
     font-weight: bold;
-    border: 2px solid rgb(0, 0, 0);
-    border-radius: 8px;
+    border: 2px solid rgba(0, 0, 0, 0);
+    border-top: none;
+    border-right: none;
+    border-left: none;
 }
 
 .nav-link:hover {
-    font-size: 1.6rem;
+    font-size: 25px;
     font-weight: 400;
-    color:rgb(0, 0, 0);
+    color:rgb(255, 255, 255);
     font-weight: bold;
-    border: 2px solid rgb(255, 1, 1);
-    background-color: rgb(255, 220, 220);
-    transition: 0.8s;
-}
+    border: 2px solid rgb(76, 187, 25);
+    border-radius: 5px;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    transition: 0.9s;
+    transform:rotate(23px);
 
-.nav-item:hover {
-    margin-left: 1rem;  
-    border-radius: 8px;
-    background-color: rgba(255, 255, 255, 0);
+    
     
 }
+
+
 
 .nav-logo {
-    font-size: 2.2rem;
+    font-size: 25px;
     font-weight: 700;
-    color: #080808;
+    color: #f1f1f1;
     margin-left: 30px;
     margin-right: 10%;
-}
-.nav-logo:hover {
-    
-    color: #080808;
 }
 
 .nav-logo img {
@@ -273,6 +272,50 @@ a {
 }
 /*--------------------------------------------------------------------------------------------------*/
 
+/*--------------------------------------------------------------------------------------------------*/
+.backround-img{
+    width: auto;
+}
+.backround-img img {
+    position: fixed;
+    width: 100%;
+}
+
+.text {
+    position: absolute;
+    margin-top: 15%;
+    margin-left: 10%;
+
+}
+/*--------------------------------------------------------------------------------------------------*/
+
+
+/*--------------------------------------------------------------------------------------------------*/
+
+
+.template-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+  }
+  
+  .template-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+    width: fit-content;
+    margin: 30px;
+  }
+  .template-item img {
+      width: 25%;
+  }
+
+  .btn details {
+      width: 40px;
+      font-weight: bold;
+  }
+/*--------------------------------------------------------------------------------------------------*/
 /* Login and Register form */
 .auth {
     height: 100%;

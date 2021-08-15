@@ -3,18 +3,14 @@
   <nav class="navbar">
         <a href="/" class="nav-logo">
         <div class='logo-text-left'>
-            The Wall
+            Curriculum Vitae
         </div>
         </a>
         <ul class="nav-menu">
             <div class='user-icon'>
             </div>
             <li class="nav-item">
-                {% if request.user.is_autenticated %}
-                    <a href="{% url 'create post' %}" class="nav-link">Create Post</a>
-                {% else %}
-                    <a href="{% url 'login' %}" class="nav-link">Create Post</a>
-                {% endif %}
+                    <a href="{% url 'all templates' %}" class="nav-link">Templates</a>
             </li>
             <li>
                 <div id="profile_picture">
@@ -22,7 +18,7 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a href="{% url 'login' %}" class="nav-link">My Account</a>
+                <a href="{% url 'login' %}" class="nav-link">LogIn</a>
             </li>
         </ul>
     <div class="hamburger">

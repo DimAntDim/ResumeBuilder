@@ -1,3 +1,4 @@
+from template_manager.models import Template
 from account_auth.models import CustomUser
 from django.db import models
 
@@ -30,5 +31,10 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.email
 
+class Templates(models.Model):
+    template = models.ForeignKey(
+        Template,
+        on_delete=models.CASCADE,
+    )
 
 from account_auth.signals import *

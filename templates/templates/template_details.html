@@ -1,0 +1,12 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+    <div class="template-item">
+        <img src="{{template.image.url}}">
+        <div>
+        <a class="btn details" href="{% url 'template details' template.id%}">Edit</a>
+        <a class="btn details" href="{% url 'all templates'%}">Back</a>
+        <div>
+    </div>
+{% endblock content %}
+

@@ -1,0 +1,18 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="template-container">
+        {% for template in templates %}
+            <div class="template-item">
+                <img src="{{template.image.url}}">
+                <div>
+                <a class="btn details" href="{% url 'template details' template.id %}">Details</a>
+                <a class="btn details" href="{% url 'generate template' template.id %}">Preview</a>
+                </div> 
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}
+
+
