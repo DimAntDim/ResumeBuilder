@@ -26,7 +26,7 @@ a {
 }
 
 .navbar {
-    height: 16%;
+    height: 10%;
     background-color: #5f5f5f;
     display: flex;
     justify-content: space-between;
@@ -92,6 +92,7 @@ a {
 .nav-logo {
     font-size: 25px;
     font-weight: 700;
+    margin-bottom: 10px;
     color: #f1f1f1;
     margin-left: 30px;
     margin-right: 10%;

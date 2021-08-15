@@ -1,0 +1,71 @@
+
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="first.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="resume-head-wrapper">
+        <div class="resume-profile-image">
+            <img src="" alt="user photo">
+        </div>
+        <div class="personal-data">
+            <div class="resume-name">
+            <h1>
+                First Name, Last name
+            </h1>
+            <h2>
+                Occupation
+            </h2>
+            </div>
+            <div class="resume-address">
+            <h3>Street, City, Country, </h3> 
+            <h3>Phone, email</h3>
+            </div>
+        </div>
+        
+    </div>
+    <div class="info-wrapper">
+        <div class="left-side">
+            <ul>
+                {% if skills %}
+                    {% for skill in skills %}
+                    <li>
+                        Skills
+                    </li>
+                    {% endfor%}
+                {% endif %}
+            </ul>
+            <ul>
+                {% if languages %}
+                    {% for language in languages %}
+                    <li>
+                        language
+                    </li>
+                    {% endfor%}
+                {% endif %}
+            </ul>
+        </div>
+        <div class="right-side">
+            <div class="info">
+                <div class="resume-about">
+                    About me
+                </div>
+                <div class="resume-employment-history">
+                    History
+                </div>
+                <div class="Education">
+                    Education
+                </div>
+            </div> 
+        </div>
+    </div>
+    <div class="resume-footer">
+        Reference
+    </div>    
+</body>
+</html>
