@@ -1,6 +1,9 @@
 {% extends 'shared/base.html' %}
 
 {% block content %}
+    {% for skill in skills %}
+        <p>{{skill}}</p>
+    {% endfor %}
     <div class="auth">
     <div style="font-size: 20px; display: flex; justify-content: space-around;">Skills</div>
         <h3>
@@ -9,8 +12,9 @@
             <hr>
             {{ form.as_p }}
             <hr>
-            <input id='btn-submit' type='submit' value='Next'> 
-            <hr>  
+            <input id='btn-submit' type='submit' value='Add'> 
+            <hr>
+            <a href="{% url 'template education' %}" class="nav-link">Next</a> 
         </form>
         </div> 
         </h3>

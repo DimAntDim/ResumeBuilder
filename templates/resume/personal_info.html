@@ -8,6 +8,9 @@
             {% csrf_token %}
             <hr>
             {{ form.as_p }}
+            {% if errors %}
+                {{errors}}
+            {% endif %}
             <hr>
             <input id='btn-submit' type='submit' value='Next'> 
             <hr>  

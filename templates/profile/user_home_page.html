@@ -1,9 +1,7 @@
 {% extends 'shared/base.html' %}
 {% block side_panel %}
 <div class="sidenav">
-  <a href="{% url 'create post' %}">Create post</a>
-  <a href="{% url 'user posts' request.user.id %}">All post</a>
-  <a href="{% url 'edit profile' request.user.id %}">Edit Profile</a>
+
 </div>
 {% endblock side_panel %}
 
