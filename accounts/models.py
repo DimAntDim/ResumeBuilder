@@ -1,5 +1,5 @@
 from django.db.models.fields.related import ForeignKey
-from template_manager.models import Template
+from template_manager.models import TemplateStyle
 from account_auth.models import CustomUser
 from django.db import models
 
@@ -31,6 +31,39 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.email
+class PersonalInfo(models.Model):
+    photo = models.ImageField(
+        upload_to = 'profiles/photo/',
+        blank=True,
+        null=True,
+    )
+    first_name = models.CharField(
+        max_length=20,
+        null=True,
+    )
+    last_name =models.CharField(
+        max_length=20,
+        null=True,
+    )
+    occupation = models.CharField(
+        max_length=30,
+        null=True,
+    )
+    address = models.CharField(
+        max_length=20,
+        null=True,
+    )
+    city = models.CharField(
+        max_length=20,
+        null=True,
+    )
+    country = models.CharField(
+        max_length=20,
+        null=True,
+    )
+    phone = models.IntegerField()
+    contact_email = models.EmailField
+    about_me = models.TextField()
 class Skills(models.Model):
     name = models.CharField(
         max_length=60,
@@ -81,42 +114,9 @@ class Education(models.Model):
 
 class User_Templates(models.Model):
     template = models.ForeignKey(
-        Template,
+        TemplateStyle,
         on_delete=models.CASCADE,
     )
-    photo = models.ImageField(
-        upload_to = 'profiles/photo/',
-        blank=True,
-        null=True,
-    )
-    first_name = models.CharField(
-        max_length=20,
-        null=True,
-    )
-    last_name =models.CharField(
-        max_length=20,
-        null=True,
-    )
-    occupation = models.CharField(
-        max_length=30,
-        null=True,
-    )
-    address = models.CharField(
-        max_length=20,
-        null=True,
-    )
-    city = models.CharField(
-        max_length=20,
-        null=True,
-    )
-    country = models.CharField(
-        max_length=20,
-        null=True,
-    )
-    phone = models.IntegerField()
-    contact_email = models.EmailField
-    about_me = models.TextField()
-
     employment_history = models.ForeignKey(
         Employment_history,
         on_delete=models.CASCADE,

@@ -5,7 +5,3 @@ from django.shortcuts import render
 
 def index(request):
     return render(request, 'home_page.html')
-
-
-def template_manager(request):
-    pass

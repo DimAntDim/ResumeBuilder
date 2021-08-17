@@ -5,12 +5,12 @@
     <div class="template-container">
         {% for template in templates %}
             <div class="template-item">
-                <img src="{{template.image.url}}">
-                <div>
-                <a class="btn details" href="{% url 'template details' template.id %}">Details</a>
-                <a class="btn details" href="{% url 'generate template' template.id %}">Preview</a>
-                </div> 
+                <img src="{{template.image.url}}">             
+               <div>
+            <a class="toggle-btn" href="{% url 'template details' template.id %}">Details</a> 
+            </div> 
             </div>
+            
         {% endfor %}
     </div>
 {% endblock content %}

@@ -1,17 +1,18 @@
 from django.shortcuts import render
-from .models import Template
+from .models import TemplateStyle
+from config.settings import STATICFILES_DIRS
 import os
 from django.contrib.auth.decorators import login_required
 
 def all_templates(request):
-    templates = Template.objects.all()
+    templates = TemplateStyle.objects.all()
     context= {
         "templates": templates, 
     }
     return render(request, "templates_page.html", context)
 
 def template_details(request, pk):
-    template = Template.objects.get(pk=pk)
+    template = TemplateStyle.objects.get(pk=pk)
     if request.method == 'POST':
         pass
 
@@ -22,10 +23,10 @@ def template_details(request, pk):
 
 
 def generate_template(requset, pk):
-    template = Template.objects.get(pk=pk)
-    template_html = os.path.join("CV_Templates", str(template.file))
+    style = TemplateStyle.objects.get(pk=pk)
+    style_path = os.path.join(STATICFILES_DIRS, str(style.css_file))
 
     context = {
-        "template": template,
+        "style_path": style_path,
     }
-    return render(requset, template_html, context)
+    return render(requset, "shared/resume_base.html", context)

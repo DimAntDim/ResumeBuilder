@@ -1,0 +1,21 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+{% block content %}    
+    <div class="edit-page-wrapper">
+        <div class="edit-page-left">
+            <img src={% static 'img/cv_templates/edit_page_bg.png' %} alt="background image">
+        </div>
+        <div class="edit-page-right">
+            <div class="edit-page-right-template-view">
+                <img src={{style.image.url}} alt="background image">      
+                <div class="edit-page-right-text">
+                    <h1>
+                    Ready?! 
+                    </h1>
+                    <a href="{% url 'template personal info' %}" class="nav-link">Let's go</a>
+                 </div>    
+        </div>
+    </div>
+    
+{% endblock content %}
+

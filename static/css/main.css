@@ -20,18 +20,34 @@ a {
     text-decoration: none;
 }
 
-
+.backround-img {
+    width: 100%;
+}
+.backround-img img {
+    position: fixed;
+    width: 100%;
+    height: auto;
+    background-repeat: no-repeat;
+}
+.home-page-text {
+    position: absolute;
+    margin: 15%;
+}
 .header{
     font-family: initial;
 }
 
 .navbar {
-    height: 10%;
+    height: auto;
     background-color: #5f5f5f;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 1.5rem;
+    padding: 0.5rem;
+}
+
+.navbar ul {
+    margin: 0;
 }
 .nav-menu-wrapper{
     display: flex;
@@ -82,17 +98,11 @@ a {
     border-left: none;
     transition: 0.9s;
     transform:rotate(23px);
-
-    
-    
 }
-
-
 
 .nav-logo {
     font-size: 25px;
     font-weight: 700;
-    margin-bottom: 10px;
     color: #f1f1f1;
     margin-left: 30px;
     margin-right: 10%;
@@ -274,18 +284,26 @@ a {
 /*--------------------------------------------------------------------------------------------------*/
 
 /*--------------------------------------------------------------------------------------------------*/
-.backround-img{
-    width: auto;
+.edit-page-wrapper {
+    display: inline-block;
+
 }
-.backround-img img {
-    position: fixed;
-    width: 100%;
+.edit-page-left img {
+    position: absolute;
+    width: 50%;
 }
 
-.text {
+.edit-page-right-template-view {
     position: absolute;
-    margin-top: 15%;
-    margin-left: 10%;
+    margin-top: 20px;
+    margin-left: 50%;
+}
+.edit-page-right-template-view img {
+    width: 100%;
+}
+.edit-page-right-text { 
+    position: absolute;
+    margin-left: 40%;
 
 }
 /*--------------------------------------------------------------------------------------------------*/
@@ -295,26 +313,40 @@ a {
 
 
 .template-container {
+    margin: auto;
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto auto;
+    grid-template-columns: repeat(2, 1fr);
     padding: 10px;
+    width: 80%;
   }
   
   .template-item {
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 20px;
+    padding: 35px;
     font-size: 30px;
     text-align: center;
-    width: fit-content;
-    margin: 30px;
   }
   .template-item img {
-      width: 25%;
+    width: 80%;
+    height: 300px;
   }
 
-  .btn details {
-      width: 40px;
-      font-weight: bold;
+  .general-btn {
+    width: 180px;
+    font-weight: bold;
+    padding: 10px;
+    margin-top: 15px;
+    border: 2px solid;
+    font-size: 18px;
+    
+  }
+  .general-btn a {
+    color: black;
+
+  }
+  .general-btn a:hover {
+    color: green;
+    text-decoration: none;
   }
 /*--------------------------------------------------------------------------------------------------*/
 /* Login and Register form */
@@ -440,7 +472,6 @@ a {
     
 }
 
-
 .nav-link-profile{
     padding: 1px 15px;
     font-size: 1.6rem;
@@ -450,6 +481,14 @@ a {
     font-weight: bold;
     border-radius: 8px;
 }
+
+/*---------------------------TEMPLATE EDIT-------------------------*/
+.edit-page-bg img{
+    width: 50%;
+}
+
+/*---------------------------END TEMPLATE EDIT-------------------------*/
+
 
 /*---------------------------FOOTER-------------------------*/
 #footer {
@@ -473,54 +512,3 @@ footer a {
     text-decoration: none;
 }
 
-/*-----------------------------POST CARD--------------------------*/
-.card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-width: 30%;
-    margin: auto;
-    text-align: center;
-    font-family: arial;
-  }
-  
-  .price {
-    color: grey;
-    font-size: 22px;
-  }
-  
-  .card-button {
-    border: none;
-    outline: 0;
-    padding: 12px;
-    color: white;
-    background-color: #000;
-    text-align: center;
-    cursor: pointer;
-    width: 100%;
-    font-size: 18px;
-  }
-  .card-button-edit {
-    border: none;
-    outline: 0;
-    padding: 12px;
-    color: white;
-    background-color: rgb(60, 163, 0);
-    text-align: center;
-    cursor: pointer;
-    width: 100%;
-    font-size: 18px;
-  }
-  .card-button-delete {
-    border: none;
-    outline: 0;
-    padding: 12px;
-    color: white;
-    background-color: rgb(148, 0, 0);
-    text-align: center;
-    cursor: pointer;
-    width: 100%;
-    font-size: 18px;
-  }
-
-  .card-button:hover {
-    opacity: 0.7;
-  }

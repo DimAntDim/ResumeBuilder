@@ -14,15 +14,19 @@ class User_TemplatesAdmin(admin.ModelAdmin):
 
 @admin.register(Languages)
 class LanguagesAdmin(admin.ModelAdmin):
-    pass
+    def has_module_permission(self, request):
+        return False
 
 @admin.register(Skills)
 class SkillsAdmin(admin.ModelAdmin):
-    pass
+    def has_module_permission(self, request):
+        return False
 @admin.register(Education)
 class EducationAdmin(admin.ModelAdmin):
-    pass
+    def has_module_permission(self, request):
+        return False
 
 @admin.register(Employment_history)
 class Employment_historyAdmin(admin.ModelAdmin):
-    pass
+    def has_module_permission(self, request):
+        return False

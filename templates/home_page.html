@@ -5,13 +5,16 @@
 
 {% block content %}
     <div class="backround-img">
-        <img src={% static 'img/background/workspace-desk.jpg' %}>
-    </div>
-    <div class="text">
+        <img src={% static 'img/Background/workspace-desk.jpg' %}>
+    <div class="home-page-text">
             <h1>Resume Builder</h1>
             <h2>Make a Resume Online—Quick and Easy</h2>
-            <input id='btn-submit' type='submit' value="Make My Resume">
-    </div
+            <div class="general-btn">
+                <a href="{% url 'all templates' %}">Make My Resume</a>
+            </div> 
+    </div>
+    </div>
+    
 {% endblock %}
 
 {% include "shared/footer.html "%} 
