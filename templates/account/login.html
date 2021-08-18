@@ -1,6 +1,12 @@
 {% extends 'home_page.html' %}
+{% load static %}
+ 
 {% block content %}
+    <div class="login-register-backgound">
+        <img src={% static 'img/background/login_bg.jpg' %}>
+    </div>
     <div class="auth">
+   
         <div class="form-box">
             <div class="button-box">
                 <div id="btn-login"></div>      

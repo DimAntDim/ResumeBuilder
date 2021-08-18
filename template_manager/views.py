@@ -1,11 +1,11 @@
-from django.db.models.query import InstanceCheckMeta
-from accounts.models import Profile
+from django.contrib.auth import get_user_model
 from .form import EducationForm, EmploymentHistoryForm, LanguagesForm, PersonalInfoForm, SkillsForm
 from django.shortcuts import redirect, render
-from .models import CustomUser, Skills, TemplateStyle
+from .models import Skills, TemplateStyle
 from config.settings import STATICFILES_DIRS
 import os
 from django.contrib.auth.decorators import login_required
+
 
 def all_templates(request):
     templates = TemplateStyle.objects.all()
@@ -40,17 +40,18 @@ def edit_template(request, pk):
     }
     return render(request, 'resume/base_edit.html', context)
 
+
 def template_personal_info(request):
     if request.method == 'POST':
         form = PersonalInfoForm(request.POST, request.FILES)
         if form.is_valid():
+            form.user = request.user
             form.save()
             return redirect('template skills')
         else:
             return render(request, 'resume/personal_info.html', {'errors':form.errors})
-
-    form = PersonalInfoForm()
-    form.user = request.user
+    
+    form = PersonalInfoForm(initial={'user':request.user})
     context = {
         "form": form,
     }
@@ -67,8 +68,7 @@ def template_skills(request):
         else:
             return render(request, 'resume/skills.html', {'errors':form.errors})
 
-    form = SkillsForm()
-    form.user = request.user
+    form = SkillsForm(initial={'user':request.user})
     context = {
         "form": form,
         "skills": skills,
@@ -84,8 +84,7 @@ def template_education(request):
         else:
             return render(request, 'resume/languages.html', {'errors':form.errors})
     
-    form = EducationForm()
-    form.user = request.user
+    form = EducationForm(initial={'user':request.user})
     context = {
         "form": form,
     }
@@ -100,8 +99,7 @@ def template_empl_history(request):
         else:
             return render(request, 'resume/employment_history.html', {'errors':form.errors})
 
-    form = EmploymentHistoryForm()
-    form.user = request.user
+    form = EmploymentHistoryForm(initial={'user':request.user})
     context = {
         "form": form,
     }
@@ -109,12 +107,12 @@ def template_empl_history(request):
 
 def template_languages(request):
     if request.method == 'POST':
-        form = LanguagesForm(request.POST, instance=request.user.id)
+        form = LanguagesForm(request.POST)
         if form.is_valid():
             form.save()
         else:
             return render(request, 'resume/languages.html', {'errors':form.errors})
-    form = LanguagesForm()
+    form = LanguagesForm(initial={'user':request.user})
     context = {
         "form": form,
     }

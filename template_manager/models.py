@@ -75,6 +75,7 @@ class Education(models.Model):
         on_delete=models.CASCADE,
         default='',
         )
+
     school_name = models.CharField(
         max_length=60,
         null=True,
@@ -89,7 +90,6 @@ class Education(models.Model):
         )
     start = models.DateField()
     end = models.DateField()
-
 class Employment_history(models.Model):
     user = models.ForeignKey(
         CustomUser,

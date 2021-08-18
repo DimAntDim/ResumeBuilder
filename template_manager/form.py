@@ -1,12 +1,9 @@
-from .models import Education, Employment_history, Languages, PersonalInfo, Skills
+from .models import CustomUser, Education, Employment_history, Languages, PersonalInfo, Skills
 from django import forms
+from django.contrib.auth import get_user_model
 
-
+user_model = get_user_model()
 class PersonalInfoForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-       super(PersonalInfoForm, self).__init__(*args, **kwargs)
-       self.fields['user'].widget.attrs['readonly'] = True
-
     class Meta:
         model = PersonalInfo
         fields = '__all__'

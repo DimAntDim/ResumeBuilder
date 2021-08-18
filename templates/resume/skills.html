@@ -1,22 +1,31 @@
 {% extends 'shared/base.html' %}
-
+{% load static %}
 {% block content %}
     {% for skill in skills %}
         <p>{{skill}}</p>
     {% endfor %}
     <div class="auth">
-    <div style="font-size: 20px; display: flex; justify-content: space-around;">Skills</div>
-        <h3>
-        <form class='data-input' method='POST' action="{% url 'template skills' %}">
-            {% csrf_token %}
-            <hr>
-            {{ form.as_p }}
-            <hr>
-            <input id='btn-submit' type='submit' value='Add'> 
-            <hr>
-            <a href="{% url 'template education' %}" class="nav-link">Next</a> 
-        </form>
-        </div> 
-        </h3>
+        <div class="resume-info-wrapper">
+         <div class="left-side">
+                <img src={% static 'img/background/skills_bg.png' %}>
+            </div>
+            <div class="right-side">
+            <div style="font-size: 20px; display: flex; justify-content: space-around;">Skills</div>
+                <h3>
+                <form class='data-input' method='POST' action="{% url 'template skills' %}">
+                    {% csrf_token %}
+                    <hr>
+                    {{ form.as_p }}
+                    <hr>
+                    <input id='btn-submit' type='submit' value='Add'> 
+                    <hr>
+                    <a href="{% url 'template education' %}" class="nav-link">Next</a> 
+                </form>
+                </div> 
+                </h3>
+               
+            </div>
+            
+        </div>
     </div>
 {% endblock content %}

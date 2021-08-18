@@ -3,10 +3,12 @@
 {% block content %}
     <div class="template-item-details">
         <img src="{{template.image.url}}">
-     <div>
-        <a class="btn details" href="{% url 'edit template' template.id%}">Edit</a>
-        <a class="btn details" href="{% url 'all templates'%}">Back</a>
-    </div>   
+    <div>
+        <a class="general-btn" href="{% url 'edit template' template.id%}">Edit</a>
+    </div>
+    <div>
+        <a class="general-btn" href="{% url 'all templates'%}">Back</a>
+    </div>
     </div>
     
 {% endblock content %}

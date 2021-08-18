@@ -1,17 +1,29 @@
 {% extends 'shared/base.html' %}
+{% load static %}
 {% block content %}
     <div class="auth">
-    <div style="font-size: 20px; display: flex; justify-content: space-around;">Employment History</div>
         <h3>
-        <form class='data-input' method='POST' action="{% url 'template empl history' %}">
-            {% csrf_token %}
-            <hr>
-            {{ form.as_p }}
-            <hr>
-            <input id='btn-submit' type='submit' value='Next'> 
-            <hr>  
-        </form>
-        </div> 
-        </h3>
+        <div style="font-size: 20px; display: flex; justify-content: space-around;">Employment History</div>
+        <div class="resume-info-wrapper">
+         <div class="left-side">
+                <img src={% static 'img/background/empl_history_bg.jpg' %} style="width: 35%;">
+            </div>
+            <div class="right-side">
+                <h3>
+                <form class='data-input' method='POST' action="{% url 'template empl history' %}">
+                    {% csrf_token %}
+                    <hr>
+                    {{ form.as_p }}
+                    <hr>
+                    <input id='btn-submit' type='submit' value='Add'> 
+                    <hr>
+                    <a href="{% url 'template languages' %}" class="nav-link">Next</a>   
+                </form>
+                </div>
+            
+        </div>
+    </h3>
+
+
     </div>
 {% endblock content %}

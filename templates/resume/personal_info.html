@@ -1,22 +1,29 @@
 {% extends 'shared/base.html' %}
-
+{% load static %}
 {% block content %}
     <div class="auth">
-    <div style="font-size: 20px; display: flex; justify-content: space-around;">Personal Information</div>
-        <h3>
-        <form class='data-input' method='POST' action="{% url 'template personal info' %}" enctype="multipart/form-data">
-            {% csrf_token %}
-            <hr>
-            {{ form.as_p }}
-            {% if errors %}
-                {{errors}}
-            {% endif %}
-            <hr>
-            <input id='btn-submit' type='submit' value='Next'> 
-            <hr>  
-        </form>
-        </div> 
-        </h3>
+        <div class="resume-info-wrapper">
+            <div class="left-side">
+            <div style="font-size: 20px; display: flex; justify-content: space-around;">Personal Information</div>
+                <h3>
+                <form class='data-input' method='POST' action="{% url 'template personal info' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    {% if errors %}
+                        {{errors}}
+                    {% endif %}
+                    <hr>
+                    <input id='btn-submit' type='submit' value='Next'> 
+                    <hr>  
+                </form>
+                </div> 
+                </h3>
+                <div class="right-side">
+                <img src={% static 'img/background/personal_info_bg.jpg' %}>
+            </div>
+            </div>
+            
+        </div>
     </div>
 
 {% endblock content %}
