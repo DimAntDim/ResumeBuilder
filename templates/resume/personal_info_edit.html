@@ -6,17 +6,15 @@
         <div class="resume-info-wrapper">
             <div class="left-side">
                 <h3>
-                <form class='data-input' method='POST' action="{% url 'template personal info' %}" enctype="multipart/form-data">
+                <form class='data-input' method='POST' action="{% url 'template edit personal info' %}" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="data-input-wrapper">
                     <p>Upload Photo</p>
                     {% for field in form %}
                         <div class="data-input-field">
                             {{ field }}
-                            
                          </div>
                     {% endfor %}
-
                     </div>
                     {% if errors %}
                         {% for error in errors %}
@@ -26,7 +24,7 @@
                         {% endfor %} 
                     {% endif %}
                     <hr>
-                    <input id='btn-submit' type='submit' value='Next'> 
+                    <input class='general-btn' type='submit' value='Save changes'> 
                     <hr>  
                 </form>
                 </div> 

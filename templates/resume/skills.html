@@ -1,31 +1,49 @@
 {% extends 'shared/base.html' %}
 {% load static %}
 {% block content %}
-    {% for skill in skills %}
-        <p>{{skill}}</p>
-    {% endfor %}
     <div class="auth">
+        <div style="font-size: 25px; font-weight: bold; margin-top: 20px; display: flex; justify-content: space-around;">Skills</div>
         <div class="resume-info-wrapper">
-         <div class="left-side">
-                <img src={% static 'img/background/skills_bg.png' %}>
-            </div>
-            <div class="right-side">
-            <div style="font-size: 20px; display: flex; justify-content: space-around;">Skills</div>
+            <div class="left-side">
                 <h3>
                 <form class='data-input' method='POST' action="{% url 'template skills' %}">
                     {% csrf_token %}
-                    <hr>
-                    {{ form.as_p }}
-                    <hr>
+                    <div class="data-input-wrapper">
+                    {% for field in form %}
+                        <div class="data-input-field">
+                            {{ field }}
+                        </div>
+                    {% endfor %}
+                    {% if errors %}
+                        {% for error in errors %}
+                            <p>
+                                {{error}}
+                            </p>
+                        {% endfor %} 
+                    {% endif %}
+                    </div>
                     <input id='btn-submit' type='submit' value='Add'> 
+                    
+                    {% for skill in skills %}
+                        <p>{{skill}}</p>
+                        <a href="{% url 'template remove skill' skill.id %}" class="general-btn">Remove</a>
+                    {% endfor %}
                     <hr>
-                    <a href="{% url 'template education' %}" class="nav-link">Next</a> 
+                    <div>
+                        <a href="{% url 'template education' %}" class="general-btn">Next</a> 
+                    </div>
+                    <hr>
                 </form>
-                </div> 
                 </h3>
-               
+                
+                </div> 
+                
+                <div class="right-side">
+                <img src={% static 'img/background/skills_bg.png' %}>
             </div>
             
+        </div>
+        
         </div>
     </div>
 {% endblock content %}

@@ -429,15 +429,18 @@ a {
 
 
 .data-input {
+    width: 150%;
     text-align: center;
-    font-weight: bold;
     border-top: none;
     border-left: none;
     border-right: none;
-    margin-top: 50px;
-    background-color: transparent;
+    margin-top: 60px;
+    background-color: #aadffe;
+    border-radius: 10px;
 }
-
+.data-input p {
+    padding-top: 10px;
+}
 
 .input-field {
     text-align: center;

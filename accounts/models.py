@@ -24,6 +24,9 @@ class Profile(models.Model):
     is_complete = models.BooleanField(
         default=False,
     )
+    template_selected = models.IntegerField(
+        null=True,
+    )
     class Meta:
         verbose_name_plural = ("Profiles")
 

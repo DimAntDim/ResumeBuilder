@@ -84,10 +84,6 @@ class Education(models.Model):
         max_length=50,
         null=True,
     )
-    school_name = models.CharField(
-        max_length=60,
-        null=True,
-        )
     start = models.DateField()
     end = models.DateField()
 class Employment_history(models.Model):
