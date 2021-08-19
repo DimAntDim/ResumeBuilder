@@ -2,28 +2,43 @@
 {% load static %}
 {% block content %}
     <div class="auth">
-        <h3>
-        <div style="font-size: 20px; display: flex; justify-content: space-around;">Employment History</div>
+    <div style="font-size: 20px; display: flex; justify-content: space-around;">Employment History</div>
         <div class="resume-info-wrapper">
-         <div class="left-side">
-                <img src={% static 'img/background/empl_history_bg.jpg' %} style="width: 35%;">
-            </div>
-            <div class="right-side">
+            <div class="left-side">
                 <h3>
                 <form class='data-input' method='POST' action="{% url 'template empl history' %}">
                     {% csrf_token %}
-                    <hr>
-                    {{ form.as_p }}
-                    <hr>
+                    <div class="data-input-wrapper">
+                    {% for field in form %}
+                        <div class="data-input-field">
+                            {{ field }}
+                        </div>
+                    {% endfor %}
+                    {% if form.errors %}
+                        {% for error in form.errors %}
+                                {{error}}
+                        {% endfor %} 
+                    {% endif %}
+                    </div>
                     <input id='btn-submit' type='submit' value='Add'> 
+                    
+                    {% for empl in empl_history %}
+                        <p>{{empl|linebreaks}}</p>
+                        <a href="{% url 'template remove empl history' empl.id %}" class="general-btn">Remove</a>
+                    {% endfor %}
                     <hr>
-                    <a href="{% url 'template languages' %}" class="nav-link">Next</a>   
+                    <div>
+                        <a href="{% url 'template languages' %}" class="general-btn">Next</a> 
+                    </div>
+                    <hr>
+                </h3>
                 </form>
-                </div>
-            
+                </div> 
+                
+            <div class="right-side">
+                <img src={% static 'img/background/empl_history_bg.jpg' %} style="width:30%; margin-left:30%;">
+            </div>
         </div>
-    </h3>
-
 
     </div>
 {% endblock content %}

@@ -25,7 +25,7 @@ class Profile(models.Model):
         default=False,
     )
     template_selected = models.IntegerField(
-        null=True,
+        default=1,
     )
     class Meta:
         verbose_name_plural = ("Profiles")

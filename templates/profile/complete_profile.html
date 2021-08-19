@@ -1,17 +1,36 @@
 {% extends 'profile/user_home_page.html' %}
+{% load static %}
 {% block content %}   
 <div class="auth">
-    <div style="font-size: 20px; display: flex; justify-content: space-around;">Complete your profile</div>
-    <h2>
-    <form class='data-input' method='POST' action="{% url 'complete profile' %}" enctype="multipart/form-data">
-        {% csrf_token %}
-        <hr>
-        {{ form.as_p }}
-        <hr>
-        <input id='btn-submit' type='submit' value='Complete'>     
-        <hr>  
-    </form>
+    <div style="font-size: 25px; font-weight: bold; margin-top: 20px; display: flex; justify-content: space-around;">Complete your profile</div>
+        <div class="resume-info-wrapper">
+            <div class="left-side">
+                <h3>
+                <form class='data-input' method='POST' action="{% url 'complete profile' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="data-input-wrapper">
+                        <div class="data-input-field">
+                            {{ form.first_name }}
+                        </div>
+                        <div class="data-input-field">
+                            {{ form.last_name }}
+                        </div>
+                        <hr>
+                        <div class="data-input-field">
+                            <p>Upload profile photo</p>
+                            <p style="color: red;">Blank by default!</p>
+                            {{ form.profile_image }}
+                            {{ form.errors}}
+                        </div>
+                    </div>
+                    <input id='btn-submit' type='submit' value='Complete'> 
+                </form>
+                </div> 
+                </h3>
+                <div class="right-side">
+                    <img src={% static 'img/background/complete_profile_bg.png' %} style="margin-left: 200px;width:50%;">
+                </div>
+        </div>
+
     </div> 
-    </h2>
-</div>
 {% endblock content %}  

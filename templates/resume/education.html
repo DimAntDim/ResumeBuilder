@@ -14,23 +14,24 @@
                             {{ field }}
                         </div>
                     {% endfor %}
-                    {% if errors %}
-                        {% for error in errors %}
-                            <p>
+                    {% if form.errors %}
+                        {% for error in form.errors %}
                                 {{error}}
-                            </p>
                         {% endfor %} 
                     {% endif %}
                     </div>
                     <input id='btn-submit' type='submit' value='Add'> 
                     
                     {% for education in educations %}
-                        <p>{{education}}</p>
+                        <hr>
+                        {{education|linebreaks}}
+                        <hr>
                         <a href="{% url 'template remove education' education.id %}" class="general-btn">Remove</a>
+
                     {% endfor %}
                     <hr>
                     <div>
-                        <a href="{% url 'template education' %}" class="general-btn">Next</a> 
+                        <a href="{% url 'template empl history' %}" class="general-btn">Next</a> 
                     </div>
                     <hr>
                 </form>

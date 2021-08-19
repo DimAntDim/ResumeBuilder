@@ -3,7 +3,7 @@ from accounts.models import Profile
 from django.contrib.auth import get_user_model
 from .form import EducationForm, EmploymentHistoryForm, LanguagesForm, PersonalInfoForm, SkillsForm
 from django.shortcuts import redirect, render
-from .models import Education, PersonalInfo, Skills, TemplateStyle
+from .models import Education, Employment_history, PersonalInfo, Skills, TemplateStyle
 from config.settings import STATICFILES_DIRS
 import os
 from django.contrib.auth.decorators import login_required
@@ -109,7 +109,7 @@ def template_education(request):
             form.save()
             return redirect('template education')
         else:
-            return render(request, 'resume/languages.html', {'errors':form.errors})
+            return render(request, 'resume/education.html', {'errors':form.errors})
 
     educations = Education.objects.all().filter(user=request.user)
     form = EducationForm(initial={'user':request.user})
@@ -120,7 +120,7 @@ def template_education(request):
     return render(request, 'resume/education.html', context)
 
 def template_remove_education(request, pk):
-    education = Skills.objects.get(pk=pk)
+    education = Education.objects.get(pk=pk)
     education.delete()
     return redirect('template education')
 
@@ -130,15 +130,22 @@ def template_empl_history(request):
         form = EmploymentHistoryForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('template languages')
+            return redirect('template empl history')
         else:
             return render(request, 'resume/employment_history.html', {'errors':form.errors})
 
+    empl_history = Employment_history.objects.all().filter(user=request.user)
     form = EmploymentHistoryForm(initial={'user':request.user})
     context = {
         "form": form,
+        "empl-history": empl_history,
     }
     return render(request, 'resume/employment_history.html', context)
+
+def template_remove_empl_history(request, pk):
+    empl = Employment_history.objects.get(pk=pk)
+    empl.delete()
+    return redirect('template empl history')
 
 def template_languages(request):
     if request.method == 'POST':

@@ -49,8 +49,8 @@ class EmploymentHistoryForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['user'].widget = forms.HiddenInput()   
-        self.fields['company_name'].widget.attrs.update({'class': 'input-field', 'placeholder':'School name'})
-        self.fields['role'].widget.attrs.update({'class': 'input-field', 'value':'Degree'})
+        self.fields['company_name'].widget.attrs.update({'class': 'input-field', 'placeholder':'Company name'})
+        self.fields['role'].widget.attrs.update({'class': 'input-field', 'placeholder':'Role'})
         self.fields['start'].widget = forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Select a date', 'type':'date'})
         self.fields['end'].widget = forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Select a date', 'type':'date'})
         self.fields['description'].widget.attrs.update({'class': 'input-field', 'rows': '3', 'placeholder':'Tell about this job'})
