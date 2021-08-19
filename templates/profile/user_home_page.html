@@ -1,13 +1,65 @@
 {% extends 'shared/base.html' %}
-{% block side_panel %}
-<div class="sidenav">
 
-</div>
-{% endblock side_panel %}
-
-{% block user_content %}
-    
-{% endblock user_content %}
+{% block content %}
+    <div class="template-container">
+        {% if personal_info %}
+            {% for info in personal_info %}
+                <div class="template-item">
+                    <hr>
+                         Personal info
+                        <ul>
+                        <img scr={{info.photo.url}} style="width:200px;">
+                        <li> {{info.first_name}}</li> 
+                             {{info.last_name}}
+                        </ul>
+                    <hr>
+                        Skills
+                        <ul>
+                        {% for skill in skills %}
+                            <li>
+                            {{skill}}
+                            </li>
+                        {% endfor %}
+                        </ul>
+                    <hr>
+                        Education
+                        <ul>
+                        {% for edu in education %}
+                            <li>
+                            {{edu}}
+                            </li>
+                        {% endfor %}
+                        </ul>
+                    <hr>
+                        Employment History
+                        <ul>
+                        {% for empl in empl_history %}
+                            <li>
+                            {{empl}}
+                            </li>
+                        {% endfor %}
+                        </ul>
+                    <hr>
+                        Languages
+                        <ul>
+                        {% for language in languages %}
+                            <li>
+                            {{language}}
+                            </li>
+                        {% endfor %}
+                        </ul>
+                    <hr>
+                    <hr>
+                    <a href="{% url 'template render' %}" class="general-btn">Use that</a>
+                                
+                </div>
+                {% endfor %}
+        {% else %}
+            No saved data
+        {% endif %}     
+        
+    </div>
+{% endblock content %}
 
 
 

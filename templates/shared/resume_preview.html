@@ -1,0 +1,54 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+{% block content %}
+    <hr>
+        SUMMARY
+    <hr>
+        Personal info
+        <ul>
+        <img scr={{personal_info.photo.url}} style="width:200px;">
+           <li> {{personal_info.first_name}}</li> 
+            {{personal_info.last_name}}
+        </ul>
+    <hr>
+        Skills
+        <ul>
+        {% for skill in skills %}
+            <li>
+            {{skill}}
+            </li>
+        {% endfor %}
+        </ul>
+    <hr>
+        Education
+        <ul>
+        {% for edu in education %}
+            <li>
+            {{edu}}
+            </li>
+        {% endfor %}
+        </ul>
+    <hr>
+        Employment History
+        <ul>
+        {% for empl in empl_history %}
+            <li>
+            {{empl}}
+            </li>
+        {% endfor %}
+        </ul>
+    <hr>
+        Languages
+        <ul>
+        {% for language in languages %}
+            <li>
+            {{language}}
+            </li>
+        {% endfor %}
+        </ul>
+    <hr>
+    <hr>
+    <a href="{% url 'template render' %}" class="general-btn">That O.K. Finish</a>
+{% endblock content %}
+
+

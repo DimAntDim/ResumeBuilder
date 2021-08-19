@@ -1,20 +1,50 @@
 {% extends 'shared/base.html' %}
-
+{% load static %}
 {% block content %}
     <div class="auth">
-    <div style="font-size: 20px; display: flex; justify-content: space-around;">Languages</div>
-        <h3>
-        <form class='data-input' method='POST' action="{% url 'template languages' %}">
-            {% csrf_token %}
-            <hr>
-            {{ form.as_p }}
-            <hr>
-            <input id='btn-submit' type='submit' value='Add'> 
-            <hr>
-            <a href="#" class="nav-link">Finish and Preview</a>   
-        </form>
-        </div> 
-        </h3>
+    <div style="font-size: 25px; font-weight: bold; margin-top: 20px; display: flex; justify-content: space-around;">Languages</div>
+        <div class="resume-info-wrapper">
+            <div class="left-side">
+                <h3>
+                <form class='data-input' method='POST' action="{% url 'template languages' %}">
+                    {% csrf_token %}
+                    <div class="data-input-wrapper">
+                    {% for field in form %}
+                        <div class="data-input-field">
+                            {{ field }}
+                        </div>
+                    {% endfor %}
+                    {% if errors %}
+                        {% for error in errors %}
+                            <p>
+                                {{error}}
+                            </p>
+                        {% endfor %} 
+                    {% endif %}
+                    </div>
+                    <input id='btn-submit' type='submit' value='Add'> 
+                    
+                    {% for language in languages %}
+                        <hr>
+                        {{language}}
+                        <hr>
+                        <a href="{% url 'template remove language' language.id %}" class="general-btn">Remove</a>
+                    {% endfor %}
+                    <hr>
+                    <div>
+                        <a href="{% url 'template preview' %}" class="general-btn">Finish and Preview</a> 
+                    </div>
+                    <hr>
+                </form>
+                </h3>
+                
+                </div> 
+                
+                <div class="right-side">
+                <img src={% static 'img/background/skills_bg.png'%} style="width:30%;">
+            </div>
+            
+        </div>
     </div>
 
 {% endblock content %}

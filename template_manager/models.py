@@ -88,8 +88,8 @@ class Education(models.Model):
     end = models.DateField()
 
     def __str__(self):
-        
         return f"School: {self.school_name}\nDegree: {self.degree}\nStart date: {self.start}\nEnd date: {self.end}"
+
 class Employment_history(models.Model):
     user = models.ForeignKey(
         CustomUser,
@@ -108,8 +108,11 @@ class Employment_history(models.Model):
     )
     start = models.DateField()
     end = models.DateField()
-    description = models.TextField(
-    )
+    description = models.TextField()
+
+    def __str__(self):
+        
+        return f"Company: {self.company_name}\nRole: {self.role}\nStart date: {self.start}\nEnd date: {self.end}\nDesctiption: {self.description}"
 
 class Languages(models.Model):
     user = models.ForeignKey(
@@ -122,3 +125,6 @@ class Languages(models.Model):
         null=True,
         blank=True,
     )
+
+    def __str__(self):
+        return self.language

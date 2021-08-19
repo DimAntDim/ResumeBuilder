@@ -5,47 +5,54 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{style_path}}">
-    <title>Document</title>
+    <title>Template</title>
 </head>
 <body>
-    <img src="{% static 'img/background/cv_bg.jpg' %}"
     <div class="resume-head-wrapper">
         <div class="resume-profile-image">
-            <img src="" alt="user photo">
+            <img src={{personal_info.photo.url}} alt="user photo" style="width: 216px;">
         </div>
         <div class="personal-data">
             <div class="resume-name">
             <h1>
-                First Name, Last name
+                {{personal_info.first_name}} {{personal_info.last_name}}
             </h1>
-            <h2>
-                Occupation
-            </h2>
             </div>
             <div class="resume-address">
-            <h3>Street, City, Country, </h3> 
-            <h3>Phone, email</h3>
-            </div>
+            <h3>Address: {{personal_info.address}}</h3> 
+            <h3>City:    {{personal_info.city}}</h3> 
+            <h3>Country: {{personal_info.country}}</h3> 
+            <h3>Phone:   {{personal_info.phone}}</h3> 
+            <h3>Email:   {{personal_info.contact_email}}</h3> 
+        </div>
         </div>
         
     </div>
     <div class="info-wrapper">
         <div class="left-side">
+            <hr>
+            <h3>Skills</h3>
+            <hr>
             <ul>
                 {% if skills %}
                     {% for skill in skills %}
                     <li>
-                        Skills
+                        {{skill|linebreaks}}
                     </li>
+                    <hr>
                     {% endfor%}
                 {% endif %}
             </ul>
+            <hr>
+            <h3>Languages</h3>
+            <hr>
             <ul>
                 {% if languages %}
                     {% for language in languages %}
                     <li>
-                        language
+                        {{language|linebreaks}}
                     </li>
+                    <hr>
                     {% endfor%}
                 {% endif %}
             </ul>
@@ -53,13 +60,36 @@
         <div class="right-side">
             <div class="info">
                 <div class="resume-about">
-                    About me
+                    <hr>
+                    <h3>About me</h3>
+                    <hr>
+                    {{personal_info.about_me}} 
                 </div>
                 <div class="resume-employment-history">
-                    History
+                    <hr>
+                    <h3>Employment History</h3>
+                    <hr>
+                    <ul>
+                    {% for empl in empl_history %}
+                        <li>
+                        {{empl|linebreaks}}
+                        </li>
+                        <hr>
+                    {% endfor %}
+                    </ul>
                 </div>
                 <div class="Education">
-                    Education
+                    <hr>
+                    <h3>Education</h3>
+                    <hr>
+                    <ul>
+                    {% for edu in education %}
+                        <li>
+                        {{edu|linebreaks}}
+                        </li>
+                        <hr>
+                    {% endfor %}
+                    </ul>
                 </div>
             </div> 
         </div>
