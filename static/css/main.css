@@ -278,7 +278,7 @@ a {
 /*--------------------------------------------------------------------------------------------------*/
 
 
-/*--------------------------------------------------------------------------------------------------*/
+/*---------------------------------TEMPLATE GRID------------------------------------------*/
 
 
 .template-container {
@@ -315,7 +315,7 @@ a {
 
   .general-btn {
     display: block;
-    width: 120px;
+    /* width: 120px; */
     height: 45px;
     margin: auto;
     background: #4E9CAF;
@@ -334,7 +334,34 @@ a {
     border: 2px solid #4E9CAF;
     transition: 0.5s;
   }
-/*--------------------------------------------------------------------------------------------------*/
+/*-----------------------------------END TEMPLATE GRID------------------------------------------*/
+
+
+.template-container-user-home {
+    margin: auto;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 10px;
+    width: 80%;
+  }
+  
+  .template-item-user-home {
+    padding: 35px;
+    font-size: 20px;
+    text-align: center;
+  }
+  .template-item-user-home-img {
+    width: 150px;
+    height: 200px;
+  }
+
+  .template-item-user-home-img img {
+    width: 100%;
+    height: auto;
+  }
+
+
 /* Login and Register form */
 .auth {
     height: 100%;

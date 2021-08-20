@@ -1,23 +1,22 @@
 {% extends 'shared/base.html' %}
 
 {% block content %}
-    <div class="template-container">
+    <div class="template-container-user-home">
         {% if personal_info %}
             {% for info in personal_info %}
-                <div class="template-item">
+                <div class="template-item-user-home">  
+                    Personal info
                     <hr>
-                         Personal info
-                        <ul>
-                        <img scr={{info.photo.url}} style="width:200px;">
-                        <li> {{info.first_name}}</li> 
-                             {{info.last_name}}
-                        </ul>
+                     <div class="template-item-user-home-img">
+                        <img scr={{info.photo.url}}>
+                    </div>
+                        {{info.first_name}} {{info.last_name}}
                     <hr>
                         Skills
                         <ul>
                         {% for skill in skills %}
                             <li>
-                            {{skill}}
+                             {{skill|linebreaks}}
                             </li>
                         {% endfor %}
                         </ul>
@@ -26,7 +25,7 @@
                         <ul>
                         {% for edu in education %}
                             <li>
-                            {{edu}}
+                            {{edu|linebreaks}}
                             </li>
                         {% endfor %}
                         </ul>
@@ -35,7 +34,7 @@
                         <ul>
                         {% for empl in empl_history %}
                             <li>
-                            {{empl}}
+                            {{empl|linebreaks}}
                             </li>
                         {% endfor %}
                         </ul>
@@ -44,7 +43,7 @@
                         <ul>
                         {% for language in languages %}
                             <li>
-                            {{language}}
+                            {{language|linebreaks}}
                             </li>
                         {% endfor %}
                         </ul>

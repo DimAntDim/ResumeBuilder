@@ -14,11 +14,7 @@
                             {{ field }}
                         </div>
                     {% endfor %}
-                    {% if form.errors %}
-                        {% for error in form.errors %}
-                                {{error}}
-                        {% endfor %} 
-                    {% endif %}
+                    {{form.errors}}
                     </div>
                     <input id='btn-submit' type='submit' value='Add'> 
                     

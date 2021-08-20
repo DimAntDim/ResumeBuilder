@@ -1,4 +1,4 @@
-from .models import CustomUser, Education, Employment_history, Languages, PersonalInfo, Skills
+from .models import Education, EmploymentHistory, Languages, PersonalInfo, Skills
 from django import forms
 from django.contrib.auth import get_user_model
 
@@ -55,7 +55,7 @@ class EmploymentHistoryForm(forms.ModelForm):
         self.fields['end'].widget = forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Select a date', 'type':'date'})
         self.fields['description'].widget.attrs.update({'class': 'input-field', 'rows': '3', 'placeholder':'Tell about this job'})
     class Meta:
-        model = Employment_history 
+        model = EmploymentHistory 
         fields = '__all__'
 
 

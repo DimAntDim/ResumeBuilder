@@ -16,15 +16,8 @@
                             
                          </div>
                     {% endfor %}
-
+                     {{form.errors}}
                     </div>
-                    {% if errors %}
-                        {% for error in errors %}
-                            <p>
-                                {{error}}
-                            </p>
-                        {% endfor %} 
-                    {% endif %}
                     <hr>
                     <input id='btn-submit' type='submit' value='Next'> 
                     <hr>  

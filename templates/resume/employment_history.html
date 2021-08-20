@@ -12,16 +12,11 @@
                     {% for field in form %}
                         <div class="data-input-field">
                             {{ field }}
+                            {{ field.errors }} 
                         </div>
                     {% endfor %}
-                    {% if form.errors %}
-                        {% for error in form.errors %}
-                                {{error}}
-                        {% endfor %} 
-                    {% endif %}
                     </div>
                     <input id='btn-submit' type='submit' value='Add'> 
-                    
                     {% for empl in empl_history %}
                         <p>{{empl|linebreaks}}</p>
                         <a href="{% url 'template remove empl history' empl.id %}" class="general-btn">Remove</a>
@@ -39,6 +34,6 @@
                 <img src={% static 'img/background/empl_history_bg.jpg' %} style="width:30%; margin-left:30%;">
             </div>
         </div>
-
     </div>
+    
 {% endblock content %}

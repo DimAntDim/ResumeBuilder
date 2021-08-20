@@ -13,14 +13,8 @@
                         <div class="data-input-field">
                             {{ field }}
                         </div>
+                        {{form.errors}}
                     {% endfor %}
-                    {% if errors %}
-                        {% for error in errors %}
-                            <p>
-                                {{error}}
-                            </p>
-                        {% endfor %} 
-                    {% endif %}
                     </div>
                     <input id='btn-submit' type='submit' value='Add'> 
                     

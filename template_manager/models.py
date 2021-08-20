@@ -90,7 +90,7 @@ class Education(models.Model):
     def __str__(self):
         return f"School: {self.school_name}\nDegree: {self.degree}\nStart date: {self.start}\nEnd date: {self.end}"
 
-class Employment_history(models.Model):
+class EmploymentHistory(models.Model):
     user = models.ForeignKey(
         CustomUser,
         on_delete=models.CASCADE,
