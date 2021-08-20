@@ -1,3 +1,4 @@
+from template_manager.models import PersonalInfo
 from account_auth.models import CustomUser
 from django.db import models
 
@@ -32,5 +33,6 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.email
+
 
 from account_auth.signals import *

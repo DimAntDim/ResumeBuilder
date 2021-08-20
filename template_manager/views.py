@@ -16,22 +16,10 @@ def all_templates(request):
 
 def template_details(request, pk):
     template = TemplateStyle.objects.get(pk=pk)
-    if request.method == 'POST':
-        pass
-
     context = {
         "template": template,
     }
     return render(request, 'templates/template_details.html', context)
-
-# def generate_template(requset, pk):
-#     style = TemplateStyle.objects.get(pk=pk)
-#     style_path = os.path.join(STATICFILES_DIRS, str(style.css_file))
-
-#     context = {
-#         "style_path": style_path,
-#     }
-#     return render(requset, "shared/resume_base.html", context)
 
 def select_template(request, pk):
     profile = Profile.objects.get(pk=request.user.pk)
@@ -57,20 +45,33 @@ def template_personal_info(request):
     }
     return render(request, 'resume/personal_info.html', context)
 
-def template_edit_personal_info(request, pk):
-    personal_info = PersonalInfo.objects.get(pk=pk)
-    if request.method == 'POST':
-        form = PersonalInfoForm(request.POST, request.FILES, instance=personal_info)
-        if form.is_valid():
-            form.save()
-            return redirect('template skills')
+def template_remove_personal_info(request, pk):
+    language = Languages.objects.get(pk=pk)
+    language.delete()
+    empl = EmploymentHistory.objects.get(pk=pk)
+    empl.delete()
+    education = Education.objects.get(pk=pk)
+    education.delete()
+    skill = Skills.objects.get(pk=pk)
+    skill.delete()
+    info = PersonalInfo.objects.get(pk=pk)
+    info.delete()
+    return redirect('user home page')
 
-    form = PersonalInfoForm(initial={'user':request.user})
-    form = PersonalInfoForm(initial=personal_info.__dict__)
-    context = {
-        "form": form,
-    }
-    return render(request, 'resume/personal_info_edit.html', context)
+# def template_edit_personal_info(request, pk):
+#     personal_info = PersonalInfo.objects.get(pk=pk)
+#     if request.method == 'POST':
+#         form = PersonalInfoForm(request.POST, request.FILES, instance=personal_info)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('template skills')
+
+#     form = PersonalInfoForm(initial={'user':request.user})
+#     form = PersonalInfoForm(initial=personal_info.__dict__)
+#     context = {
+#         "form": form,
+#     }
+#     return render(request, 'resume/personal_info_edit.html', context)
 
 
 def template_skills(request):

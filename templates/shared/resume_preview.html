@@ -1,17 +1,17 @@
 {% extends 'shared/base.html' %}
 {% load static %}
 {% block content %}
+<div class="summary-personal-info">
     <hr>
-        SUMMARY
+        <b>SUMMARY</b>
     <hr>
-        Personal info
+        <b>Personal info</b>
         <ul>
-        <img scr={{personal_info.photo.url}} style="width:200px;">
-           <li> {{personal_info.first_name}}</li> 
-            {{personal_info.last_name}}
+           <li> {{personal_info.first_name}} {{personal_info.last_name}}</li>    
         </ul>
     <hr>
-        Skills
+       <b> Skills</b>
+    <hr>
         <ul>
         {% for skill in skills %}
             <li>
@@ -20,7 +20,8 @@
         {% endfor %}
         </ul>
     <hr>
-        Education
+        <b>Education</b>
+    <hr>    
         <ul>
         {% for edu in education %}
             <li>
@@ -29,7 +30,8 @@
         {% endfor %}
         </ul>
     <hr>
-        Employment History
+        <b>Employment History</b>
+    <hr>
         <ul>
         {% for empl in empl_history %}
             <li>
@@ -38,7 +40,8 @@
         {% endfor %}
         </ul>
     <hr>
-        Languages
+        <b>Languages</b>
+    <hr>
         <ul>
         {% for language in languages %}
             <li>
@@ -49,6 +52,7 @@
     <hr>
     <hr>
     <a href="{% url 'template render' %}" class="general-btn">That O.K. Finish</a>
+</div>
 {% endblock content %}
 
 

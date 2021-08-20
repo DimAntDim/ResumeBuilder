@@ -270,11 +270,6 @@ a {
 .edit-page-right-template-view img {
     width: 100%;
 }
-.edit-page-right-text { 
-    position: absolute;
-    margin-left: 40%;
-
-}
 /*--------------------------------------------------------------------------------------------------*/
 
 
@@ -541,7 +536,15 @@ a {
 }
 
 
-
+.summary-personal-info {
+    display: flex;
+    flex-direction: column;
+    align-content: space-around;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    font-size: large;
+}
 
 /*---------------------------FOOTER-------------------------*/
 #footer {

@@ -18,6 +18,9 @@ class TemplateStyle(models.Model):
         null=True,
     )
 
+    def __srt__(self):
+        return self.name
+
 class PersonalInfo(models.Model):
     user = models.ForeignKey(
         CustomUser,
@@ -54,6 +57,7 @@ class PersonalInfo(models.Model):
         null=True,
     )
     about_me = models.TextField()
+
 class Skills(models.Model):
     user = models.ForeignKey(
         CustomUser,
@@ -111,7 +115,6 @@ class EmploymentHistory(models.Model):
     description = models.TextField()
 
     def __str__(self):
-        
         return f"Company: {self.company_name}\nRole: {self.role}\nStart date: {self.start}\nEnd date: {self.end}\nDesctiption: {self.description}"
 
 class Languages(models.Model):
@@ -125,6 +128,5 @@ class Languages(models.Model):
         null=True,
         blank=True,
     )
-
     def __str__(self):
         return self.language

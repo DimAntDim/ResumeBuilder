@@ -23,7 +23,7 @@
                 </div>
             </li>
           <li class="nav-item">
-              <a href="{% url 'user home page' request.user.id %}" class="nav-link">
+              <a href="{% url 'user home page' %}" class="nav-link">
                 {% if request.user.profile.first_name %}
                   Hello, {{ request.user.profile.first_name }}
                 {% else %} 

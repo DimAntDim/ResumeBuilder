@@ -8,8 +8,8 @@ from django.shortcuts import redirect, render
 User = get_user_model()
 
 @login_required
-def user_home_page(request, pk):
-    profile = Profile.objects.get(pk=pk)
+def user_home_page(request):
+    profile = Profile.objects.get(pk=request.user.pk)
     personal_info = PersonalInfo.objects.all().filter(user=request.user)
     skills = Skills.objects.all().filter(user=request.user)
     education = Education.objects.all().filter(user=request.user)
@@ -29,7 +29,7 @@ def user_home_page(request, pk):
         return redirect('complete profile')
 
 
-
+@login_required
 def complete_profile(request):
     profile = Profile.objects.get(pk=request.user.pk)
        
@@ -54,7 +54,7 @@ def complete_profile(request):
     return render(request, 'profile/complete_profile.html', context)
 
 
-
+@login_required
 def edit_profile(request, pk):
     profile = Profile.objects.get(pk=pk)
     if request.method == 'POST':
