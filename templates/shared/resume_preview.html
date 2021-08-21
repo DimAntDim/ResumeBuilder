@@ -7,7 +7,8 @@
     <hr>
         <b>Personal info</b>
         <ul>
-           <li> {{personal_info.first_name}} {{personal_info.last_name}}</li>    
+        {% for info in personal_info %}{% endfor %}
+           <li> {{info}} </li>    
         </ul>
     <hr>
        <b> Skills</b>
