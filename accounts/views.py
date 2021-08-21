@@ -11,7 +11,8 @@ User = get_user_model()
 def user_home_page(request):
     profile = Profile.objects.get(pk=request.user.pk)
     if profile.is_complete:
-        personal_info = PersonalInfo.objects.get(user=request.user)
+        profile = Profile.objects.get(pk=request.user.pk)
+        personal_info = PersonalInfo.objects.all().filter(user=request.user)
         skills = Skills.objects.all().filter(user=request.user)
         education = Education.objects.all().filter(user=request.user)
         empl_history = EmploymentHistory.objects.all().filter(user=request.user)
