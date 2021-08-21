@@ -3,14 +3,20 @@
 {% block content %}
     <div class="template-container-user-home">
         {% if personal_info %}
-            {% for info in personal_info %}
                 <div class="template-item-user-home">  
                     Personal info
                     <hr>
+                    
                      <div class="template-item-user-home-img">
-                        <img scr={{info.photo.url}}>
+                        <img scr={{personal_info.photo.url}} >
                     </div>
-                        {{info.first_name}} {{info.last_name}}
+                        <li>{{personal_info.first_name}} {{personal_info.last_name}}
+                        <li>{{personal_info.address}}
+                        <li>{{personal_info.city}}
+                        <li>{{personal_info.phone}}
+                        <li>{{personal_info.about_me}}
+                        <a href="{% url 'template render' %}" class="general-btn" style="font-size: 15px;width: 120px;height: 30px;display: flex;flex-direction: column;justify-content: center;">Edit</a>
+                        <a href="{% url 'template render' %}" class="general-btn" style="background-color:red; font-size: 15px;width: 120px;height: 30px;display: flex;flex-direction: column;justify-content: center;">Delete</a>
                     <hr>
                         Skills
                         <ul>
@@ -19,6 +25,8 @@
                              {{skill|linebreaks}}
                             </li>
                         {% endfor %}
+                        <a href="{% url 'template render' %}" class="general-btn" style="font-size: 15px;width: 120px;height: 30px;display: flex;flex-direction: column;justify-content: center;">Edit</a>
+                        <a href="{% url 'template render' %}" class="general-btn" style="background-color:red; font-size: 15px;width: 120px;height: 30px;display: flex;flex-direction: column;justify-content: center;">Delete</a>
                         </ul>
                     <hr>
                         Education
@@ -28,6 +36,8 @@
                             {{edu|linebreaks}}
                             </li>
                         {% endfor %}
+                        <a href="{% url 'template render' %}" class="general-btn" style="font-size: 15px;width: 120px;height: 30px;display: flex;flex-direction: column;justify-content: center;">Edit</a>
+                        <a href="{% url 'template render' %}" class="general-btn" style="background-color:red; font-size: 15px;width: 120px;height: 30px;display: flex;flex-direction: column;justify-content: center;">Delete</a>
                         </ul>
                     <hr>
                         Employment History
@@ -37,6 +47,8 @@
                             {{empl|linebreaks}}
                             </li>
                         {% endfor %}
+                        <a href="{% url 'template render' %}" class="general-btn" style="font-size: 15px;width: 120px;height: 30px;display: flex;flex-direction: column;justify-content: center;">Edit</a>
+                        <a href="{% url 'template render' %}" class="general-btn" style="background-color:red; font-size: 15px;width: 120px;height: 30px;display: flex;flex-direction: column;justify-content: center;">Delete</a>
                         </ul>
                     <hr>
                         Languages
@@ -46,13 +58,13 @@
                             {{language|linebreaks}}
                             </li>
                         {% endfor %}
+                        <a href="{% url 'template render' %}" class="general-btn" style="font-size: 15px;width: 120px;height: 30px;display: flex;flex-direction: column;justify-content: center;">Edit</a>
+                        <a href="{% url 'template render' %}" class="general-btn" style="background-color:red; font-size: 15px;width: 120px;height: 30px;display: flex;flex-direction: column;justify-content: center;">Delete</a>
                         </ul>
                     <hr>
                     <hr>
-                    <a href="{% url 'template render' %}" class="general-btn">Use that</a>
-                    <a href="{% url 'template remove personal info' info.id %}" class="general-btn">Remove</a>            
+                    <a href="{% url 'template render' %}" class="general-btn">Use that</a>           
                 </div>
-                {% endfor %}
         {% else %}
             No saved data
         {% endif %}     

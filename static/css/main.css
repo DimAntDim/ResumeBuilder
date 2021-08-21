@@ -355,8 +355,10 @@ a {
     text-align: center;
   }
   .template-item-user-home-img {
+    margin: auto;
     width: 150px;
     height: 200px;
+    display: flex;
   }
 
   .template-item-user-home-img img {

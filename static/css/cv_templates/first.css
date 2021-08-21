@@ -14,6 +14,20 @@ body img {
     background-repeat: no-repeat;
 }
 
+.general-btn {
+    display: block;
+    /* width: 120px; */
+    height: 45px;
+    margin: auto;
+    background: #4E9CAF;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+  }
+
 .resume-head-wrapper {
     background-color: #7fffd4a8;
     display: flex;
