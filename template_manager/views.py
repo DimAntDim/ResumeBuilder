@@ -38,12 +38,6 @@ def template_personal_info(request):
         if form.is_valid():
             form.save()
             return redirect('template skills')
-    try:
-        personal_info = PersonalInfo.objects.get(pk=request.user.pk)
-    except:
-        pass
-    if personal_info:
-        form = PersonalInfoForm(initial=personal_info.__dict__)
     form = PersonalInfoForm(initial={'user':request.user})
     context = {
         "form": form,
