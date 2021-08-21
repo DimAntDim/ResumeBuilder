@@ -39,13 +39,13 @@ def complete_profile(request):
             profile.is_complete = True
             profile.save()
             form.save()
-            return redirect('user home page', pk=request.user.pk)
+            return redirect('user home page')
         else:
             form = ProfileForm(instance=profile)
             context = {
                 "form": form,
             }
-            return redirect('user home page', pk=request.user.pk)
+            return redirect('user home page')
         
     form = ProfileForm(instance=profile)
     context = {
