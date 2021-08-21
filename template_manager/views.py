@@ -44,35 +44,6 @@ def template_personal_info(request):
     }
     return render(request, 'resume/personal_info.html', context)
 
-def template_remove_personal_info(request, pk):
-    language = Languages.objects.get(pk=pk)
-    language.delete()
-    empl = EmploymentHistory.objects.get(pk=pk)
-    empl.delete()
-    education = Education.objects.get(pk=pk)
-    education.delete()
-    skill = Skills.objects.get(pk=pk)
-    skill.delete()
-    info = PersonalInfo.objects.get(pk=pk)
-    info.delete()
-    return redirect('user home page')
-
-# def template_edit_personal_info(request, pk):
-#     personal_info = PersonalInfo.objects.get(pk=pk)
-#     if request.method == 'POST':
-#         form = PersonalInfoForm(request.POST, request.FILES, instance=personal_info)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('template skills')
-
-#     form = PersonalInfoForm(initial={'user':request.user})
-#     form = PersonalInfoForm(initial=personal_info.__dict__)
-#     context = {
-#         "form": form,
-#     }
-#     return render(request, 'resume/personal_info_edit.html', context)
-
-
 def template_skills(request):
     if request.method == 'POST':
         form = SkillsForm(request.POST)

@@ -28,32 +28,19 @@ class LoginViewTest(TestCase):
         response = self.client.post(reverse('login'), data={'email': 'test@test.test', 'password': 'test'})
         self.assertEqual(200, response.status_code)
 
-    def test_wrong_username(self):
-        response = self.client.post(reverse('login'), {'email': 'test', 'password': 'test'})
-        self.assertEqual(200, response.status_code)
-        errors = response.context['form'].errors['password']
-        default_error = 'Email and/or password incorrect'
-        self.assertIn(default_error, errors)
-
-    def test_wrong_password(self):
-        response = self.client.post(reverse('login'), {'email': 'test@test.test', 'password': 'wrong'})
-        self.assertEqual(200, response.status_code)
-        errors = response.context['form'].errors['password']
-        default_error = 'Email and/or password incorrect'
-        self.assertIn(default_error, errors)
 
 
-# class LogOutViewTest(TestCase):
-#     def setUp(self):
-#         self.user = UserModel.objects.create(
-#             email='test@textcom',
-#             password = 'test',
-#             )
-#     def tearDown(self):
-#         self.user.delete()
+class LogOutViewTest(TestCase):
+    def setUp(self):
+        self.user = UserModel.objects.create(
+            email='test@textcom',
+            password = 'test',
+            )
+    def tearDown(self):
+        self.user.delete()
 
-#     def test_logout_success_redirect_index(self):
-#         self.client.login(email="test@test.com", password='text')
-#         response = self.client.get(reverse('logout'))
-#         self.assertEqual(200, response.status_code)
+    def test_logout_success_redirect_index(self):
+        self.client.login(email="test@test.com", password='text')
+        response = self.client.get(reverse('logout'))
+        self.assertEqual(302, response.status_code)
 
