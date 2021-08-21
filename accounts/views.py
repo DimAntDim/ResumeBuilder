@@ -10,12 +10,12 @@ User = get_user_model()
 @login_required
 def user_home_page(request):
     profile = Profile.objects.get(pk=request.user.pk)
-    personal_info = PersonalInfo.objects.get(user=request.user)
-    skills = Skills.objects.all().filter(user=request.user)
-    education = Education.objects.all().filter(user=request.user)
-    empl_history = EmploymentHistory.objects.all().filter(user=request.user)
-    languages = Languages.objects.all().filter(user=request.user)
     if profile.is_complete:
+        personal_info = PersonalInfo.objects.get(user=request.user)
+        skills = Skills.objects.all().filter(user=request.user)
+        education = Education.objects.all().filter(user=request.user)
+        empl_history = EmploymentHistory.objects.all().filter(user=request.user)
+        languages = Languages.objects.all().filter(user=request.user)
         context = {
             "profile": profile,
             "personal_info": personal_info,

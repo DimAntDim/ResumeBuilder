@@ -27,9 +27,8 @@ def user_login(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('user home page', pk=request.user.pk)
-    else:
-        form = LogInForm()
+            return redirect('user home page')
+    form = LogInForm()
     context = {
         'form': form,
     }
