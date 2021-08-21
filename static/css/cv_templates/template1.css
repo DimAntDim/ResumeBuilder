@@ -1,0 +1,91 @@
+body {
+    width: 80%;
+    margin: auto auto;
+}
+
+h3 {
+    margin-left: 40%;
+}
+
+body img {
+    width: 100%;
+    height: auto;
+    background-repeat: no-repeat;
+}
+
+.general-btn {
+    display: block;
+    height: 45px;
+    margin: auto;
+    background: #4E9CAF;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+.resume-head-wrapper {
+    background-color: #7fffd4a8;
+    display: flex;
+    font-size: 15px;
+    margin-bottom: 25px;
+    margin-top: 25px;
+    align-content: space-around;
+    justify-content: space-around;
+    align-items: flex-start;
+    border: 3px solid black;
+}
+.resume-profile-image {
+    display: flex;
+    width: 15%;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    align-items: stretch;
+}
+
+.personal-data {
+    margin-left: 15%;
+    border-left: 3px solid black;
+    padding-left: 20px;
+}
+
+.resume-profile-image img {
+    margin-left: 51px;
+}
+
+.info-wrapper {
+    display: flex;
+
+}
+.left-side {
+    border: 3px solid;
+    font-size: 18px;
+    display: flex;
+    background-color: #a9fde2;
+    margin-right: 20px;
+    width: 34%;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: center;
+}
+.right-side {
+    width: 100%;
+    background-color: #eae8e8d4;
+    display: flex;
+    justify-content: space-around;
+}
+
+.right-side .info {
+    width: 80%;
+}
+
+.resume-footer {
+    height: 30px;
+    background-color: #7fffd4a8;
+    display: flex;
+    margin-top: 20px;
+}
