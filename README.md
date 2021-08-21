@@ -1,1 +1,1 @@
-# ResumeBuilder
+# ResumeBuilder - simple CV creator
