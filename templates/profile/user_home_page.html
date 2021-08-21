@@ -15,8 +15,6 @@
                         <li>{{personal_info.city}}
                         <li>{{personal_info.phone}}
                         <li>{{personal_info.about_me}}
-                        <a href="{% url 'template render' %}" class="general-btn" style="font-size: 15px;width: 120px;height: 30px;display: flex;flex-direction: column;justify-content: center;">Edit</a>
-                        <a href="{% url 'template render' %}" class="general-btn" style="background-color:red; font-size: 15px;width: 120px;height: 30px;display: flex;flex-direction: column;justify-content: center;">Delete</a>
                     <hr>
                         Skills
                         <ul>
@@ -25,8 +23,6 @@
                              {{skill|linebreaks}}
                             </li>
                         {% endfor %}
-                        <a href="{% url 'template render' %}" class="general-btn" style="font-size: 15px;width: 120px;height: 30px;display: flex;flex-direction: column;justify-content: center;">Edit</a>
-                        <a href="{% url 'template render' %}" class="general-btn" style="background-color:red; font-size: 15px;width: 120px;height: 30px;display: flex;flex-direction: column;justify-content: center;">Delete</a>
                         </ul>
                     <hr>
                         Education
@@ -36,8 +32,6 @@
                             {{edu|linebreaks}}
                             </li>
                         {% endfor %}
-                        <a href="{% url 'template render' %}" class="general-btn" style="font-size: 15px;width: 120px;height: 30px;display: flex;flex-direction: column;justify-content: center;">Edit</a>
-                        <a href="{% url 'template render' %}" class="general-btn" style="background-color:red; font-size: 15px;width: 120px;height: 30px;display: flex;flex-direction: column;justify-content: center;">Delete</a>
                         </ul>
                     <hr>
                         Employment History
@@ -47,8 +41,6 @@
                             {{empl|linebreaks}}
                             </li>
                         {% endfor %}
-                        <a href="{% url 'template render' %}" class="general-btn" style="font-size: 15px;width: 120px;height: 30px;display: flex;flex-direction: column;justify-content: center;">Edit</a>
-                        <a href="{% url 'template render' %}" class="general-btn" style="background-color:red; font-size: 15px;width: 120px;height: 30px;display: flex;flex-direction: column;justify-content: center;">Delete</a>
                         </ul>
                     <hr>
                         Languages
@@ -58,12 +50,11 @@
                             {{language|linebreaks}}
                             </li>
                         {% endfor %}
-                        <a href="{% url 'template render' %}" class="general-btn" style="font-size: 15px;width: 120px;height: 30px;display: flex;flex-direction: column;justify-content: center;">Edit</a>
-                        <a href="{% url 'template render' %}" class="general-btn" style="background-color:red; font-size: 15px;width: 120px;height: 30px;display: flex;flex-direction: column;justify-content: center;">Delete</a>
                         </ul>
                     <hr>
                     <hr>
-                    <a href="{% url 'template render' %}" class="general-btn">Use that</a>           
+                        <a href="{% url 'template personal info' %}" class="general-btn" style="font-size: 15px;width: 120px;height: 30px;display: flex;flex-direction: column;justify-content: center;">Edit</a>
+                        <a href="{% url 'template render' %}" class="general-btn" style="background-color:red; font-size: 15px;width: 120px;height: 30px;display: flex;flex-direction: column;justify-content: center;">Render</a>          
                 </div>
         {% else %}
             No saved data

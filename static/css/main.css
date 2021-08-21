@@ -530,14 +530,18 @@ a {
 
 .resume-info-wrapper {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
 }
 .resume-info-wrapper .left-side {
-    margin-left: 10%;
+    margin-left: 4%;
 }
 
 .resume-info-wrapper .right-side {
     width: 50%;
+    margin-left: 20%;
 }
 
 .resume-info-wrapper .right-side img{
