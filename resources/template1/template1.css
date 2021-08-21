@@ -15,7 +15,6 @@ body img {
 
 .general-btn {
     display: block;
-    /* width: 120px; */
     height: 45px;
     margin: auto;
     background: #4E9CAF;
@@ -28,17 +27,24 @@ body img {
   }
 
 .resume-head-wrapper {
-    background-color: #ffbcbc;
+    background-color: #7fffd4a8;
     display: flex;
     font-size: 15px;
     margin-bottom: 25px;
     margin-top: 25px;
-    justify-content: flex-start;
-    align-items: center;
+    align-content: space-around;
+    justify-content: space-around;
+    align-items: flex-start;
     border: 3px solid black;
 }
 .resume-profile-image {
-    width: 10%;
+    display: flex;
+    width: 15%;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    align-items: stretch;
 }
 
 .personal-data {
@@ -48,7 +54,7 @@ body img {
 }
 
 .resume-profile-image img {
-    
+    margin-left: 51px;
 }
 
 .info-wrapper {
@@ -59,7 +65,7 @@ body img {
     border: 3px solid;
     font-size: 18px;
     display: flex;
-    background-color: #ffbcbc;
+    background-color: #a9fde2;
     margin-right: 20px;
     width: 34%;
     flex-wrap: nowrap;
@@ -78,8 +84,8 @@ body img {
 }
 
 .resume-footer {
-    height: 7%;
-    background-color: #ffbcbc;
+    height: 30px;
+    background-color: #7fffd4a8;
     display: flex;
     margin-top: 20px;
 }
