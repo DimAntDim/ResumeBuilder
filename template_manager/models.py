@@ -21,12 +21,8 @@ class TemplateStyle(models.Model):
     def __srt__(self):
         return self.name
 
+
 class PersonalInfo(models.Model):
-    user = models.ForeignKey(
-        CustomUser,
-        on_delete=models.CASCADE,
-        default='',
-        )
     photo = models.ImageField(
         upload_to = 'profiles/photo/',
         blank=True,
@@ -59,11 +55,6 @@ class PersonalInfo(models.Model):
     about_me = models.TextField()
 
 class Skills(models.Model):
-    user = models.ForeignKey(
-        CustomUser,
-        on_delete=models.CASCADE,
-        default='',
-        )
     name = models.CharField(
         max_length=60,
         null=True,
@@ -74,12 +65,6 @@ class Skills(models.Model):
         return self.name
 
 class Education(models.Model):
-    user = models.ForeignKey(
-        CustomUser,
-        on_delete=models.CASCADE,
-        default='',
-        )
-
     school_name = models.CharField(
         max_length=60,
         null=True,
@@ -95,11 +80,6 @@ class Education(models.Model):
         return f"School: {self.school_name}\nDegree: {self.degree}\nStart date: {self.start}\nEnd date: {self.end}"
 
 class EmploymentHistory(models.Model):
-    user = models.ForeignKey(
-        CustomUser,
-        on_delete=models.CASCADE,
-        default='',
-        )
     company_name = models.CharField(
         max_length=60,
         null=True,
@@ -118,11 +98,7 @@ class EmploymentHistory(models.Model):
         return f"Company: {self.company_name}\nRole: {self.role}\nStart date: {self.start}\nEnd date: {self.end}\nDesctiption: {self.description}"
 
 class Languages(models.Model):
-    user = models.ForeignKey(
-        CustomUser,
-        on_delete=models.CASCADE,
-        default='',
-        )
+    
     language = models.CharField(
         max_length=60,
         null=True,
@@ -130,3 +106,31 @@ class Languages(models.Model):
     )
     def __str__(self):
         return self.language
+
+
+class Resume(models.Model):
+    user = models.ForeignKey(
+        CustomUser,
+        on_delete=models.CASCADE,
+        default='',
+        )
+    personal_info = models.ForeignKey(
+        PersonalInfo,
+        on_delete=models.CASCADE,
+    )
+    skills = models.ForeignKey(
+        Skills,
+        on_delete=models.CASCADE,
+    )
+    education = models.ForeignKey(
+        Education,
+        on_delete=models.CASCADE,
+    )
+    employment_history = models.ForeignKey(
+        EmploymentHistory,
+        on_delete=models.CASCADE,
+    )
+    languages = models.ForeignKey(
+        Languages,
+        on_delete=models.CASCADE,
+    )

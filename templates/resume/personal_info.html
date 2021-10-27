@@ -2,33 +2,34 @@
 {% load static %}
 {% block content %}
     <div class="auth">
-    <div style="font-size: 25px; font-weight: bold; margin-top: 20px; display: flex; justify-content: space-around;">Personal Information</div>
-        <div class="resume-info-wrapper">
-            <div class="left-side">
-                <h3>
-                <form class='data-input' method='POST' action="{% url 'template personal info' %}" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div class="data-input-wrapper">
-                    <p>Upload Photo</p>
-                    {% for field in form %}
-                        <div class="data-input-field">
-                            {{ field }}
-                            
-                         </div>
-                    {% endfor %}
-                     {{form.errors}}
-                    </div>
-                    <hr>
-                    <input id='btn-submit' type='submit' value='Next'> 
-                    <hr>  
-                </form>
-                </div> 
-                </h3>
+        <div style="font-size: 25px; font-weight: bold; margin-top: 20px; display: flex; justify-content: space-around;">Personal Information</div>
+            <div class="resume-info-wrapper"  style="display: flex; justify-content: space-around; width">
+                <div class="left-side">
+                    <h3>
+                    <form class='data-input' method='POST' action="{% url 'template personal info' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="data-input-wrapper">
+                        <p>Upload Photo</p>
+                        {% for field in form %}
+                            <div class="data-input-field">
+                                {{ field }}
+                                
+                            </div>
+                        {% endfor %}
+                        {{form.errors}}
+                        </div>
+                        <hr>
+                        <input id='btn-submit' type='submit' value='Next'> 
+                        <hr>  
+                    </form>
+                    </div> 
+                    </h3>
+                    
+                
                 <div class="right-side">
-                <img src={% static 'img/background/personal_info_bg.jpg' %}>
-            </div>
-        </div>
-            
+                    <img src={% static 'img/background/personal_info_bg.jpg' %} width='200'>
+                </div>
+            </div>     
         </div>
     </div>
 

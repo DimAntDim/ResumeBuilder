@@ -13,14 +13,14 @@ def user_home_page(request):
     if profile.is_complete:
         profile = Profile.objects.get(pk=request.user.pk)
         personal_info = PersonalInfo.objects.all().filter(user=request.user)
-        index_info = len(personal_info)-1
+        index_info = len(personal_info)
         skills = Skills.objects.all().filter(user=request.user)
         education = Education.objects.all().filter(user=request.user)
         empl_history = EmploymentHistory.objects.all().filter(user=request.user)
         languages = Languages.objects.all().filter(user=request.user)
         context = {
             "profile": profile,
-            "personal_info": personal_info[index_info],
+            "personal_info": personal_info,
             "skills": skills,
             "education": education,
             "empl_history": empl_history,
