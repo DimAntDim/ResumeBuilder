@@ -117,20 +117,25 @@ class Resume(models.Model):
     personal_info = models.ForeignKey(
         PersonalInfo,
         on_delete=models.CASCADE,
+        null=True,
     )
     skills = models.ForeignKey(
         Skills,
         on_delete=models.CASCADE,
+        null=True,
     )
     education = models.ForeignKey(
         Education,
         on_delete=models.CASCADE,
+        null=True,
     )
     employment_history = models.ForeignKey(
         EmploymentHistory,
         on_delete=models.CASCADE,
+        null=True,
     )
     languages = models.ForeignKey(
         Languages,
         on_delete=models.CASCADE,
+        null=True,
     )

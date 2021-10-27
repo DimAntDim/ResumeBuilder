@@ -1,11 +1,13 @@
+from django.contrib.auth import get_user_model
 from accounts.models import Profile
 from .form import EducationForm, EmploymentHistoryForm, LanguagesForm, PersonalInfoForm, SkillsForm
 from django.shortcuts import redirect, render
-from .models import Resume, TemplateStyle
+from .models import CustomUser, PersonalInfo, Resume, TemplateStyle
 from config.settings import STATICFILES_DIRS
 import os
 from django.contrib.auth.decorators import login_required
 
+user = get_user_model
 
 def all_templates(request):
     templates = TemplateStyle.objects.all()
@@ -36,7 +38,21 @@ def template_personal_info(request):
     if request.method == 'POST':
         form = PersonalInfoForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            personal_info = PersonalInfo(
+                first_name=form.cleaned_data['first_name'],
+                last_name=form.cleaned_data['last_name'],
+                address=form.cleaned_data['address'],
+                photo=form.cleaned_data['photo'],
+                city=form.cleaned_data['city'],
+                country=form.cleaned_data['country'],
+                phone=form.cleaned_data['phone'],
+                contact_email=form.cleaned_data['contact_email'],
+                about_me=form.cleaned_data['about_me'],
+                )
+            personal_info.save()
+            personal_info_id = personal_info.id
+            new_resume = Resume(user_id=request.user.id, personal_info_id=personal_info_id)
+            new_resume.save()
             return redirect('template skills')
     form = PersonalInfoForm(initial={'user':request.user})
     context = {
@@ -51,7 +67,7 @@ def template_skills(request):
             form.save()
             return redirect('template skills')
 
-    skills = Resume.skills.objects.all().filter(user=request.user)
+    # skills = Resume.skills.objects.all().filter(user=request.user)
     form = SkillsForm(initial={'user':request.user})
     context = {
         "form": form,

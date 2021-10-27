@@ -1,9 +1,9 @@
 {% extends 'shared/base.html' %}
 {% load static %}
 {% block content %}
-    <div class="auth">
-        <div style="font-size: 25px; font-weight: bold; margin-top: 20px; display: flex; justify-content: space-around;">Personal Information</div>
-            <div class="resume-info-wrapper"  style="display: flex; justify-content: space-around; width">
+    <div>
+        <h3>Personal Information</h3>
+            <div class="resume-info-wrapper"  style="display: flex; justify-content: space-around; width: 75%; margin: auto;">
                 <div class="left-side">
                     <h3>
                     <form class='data-input' method='POST' action="{% url 'template personal info' %}" enctype="multipart/form-data">
@@ -12,8 +12,7 @@
                         <p>Upload Photo</p>
                         {% for field in form %}
                             <div class="data-input-field">
-                                {{ field }}
-                                
+                                {{ field }} 
                             </div>
                         {% endfor %}
                         {{form.errors}}
@@ -22,10 +21,8 @@
                         <input id='btn-submit' type='submit' value='Next'> 
                         <hr>  
                     </form>
-                    </div> 
                     </h3>
-                    
-                
+                </div> 
                 <div class="right-side">
                     <img src={% static 'img/background/personal_info_bg.jpg' %} width='200'>
                 </div>
