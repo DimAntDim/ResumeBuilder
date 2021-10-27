@@ -17,11 +17,12 @@
                     {{form.errors}}
                     </div>
                     <input id='btn-submit' type='submit' value='Add'> 
-                    
-                    {% for skill in skills %}
-                        <p>{{skill}}</p>
-                        <a href="{% url 'template remove skill' skill.id %}" class="general-btn">Remove</a>
-                    {% endfor %}
+                    {% if skills %}
+                        {% for skill in skills %}
+                            <p>{{skill}}</p>
+                            <a href="{% url 'template remove skill' skill.id %}" class="general-btn">Remove</a>
+                        {% endfor %}
+                    {% endif %}
                     <hr>
                     <div>
                         <a href="{% url 'template education' %}" class="general-btn">Next</a> 

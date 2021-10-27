@@ -1,13 +1,11 @@
-from django.contrib.auth import get_user_model
 from accounts.models import Profile
 from .form import EducationForm, EmploymentHistoryForm, LanguagesForm, PersonalInfoForm, SkillsForm
 from django.shortcuts import redirect, render
-from .models import CustomUser, PersonalInfo, Resume, TemplateStyle
+from .models import Education, EmploymentHistory, Languages, PersonalInfo, Skills, TemplateStyle
 from config.settings import STATICFILES_DIRS
 import os
 from django.contrib.auth.decorators import login_required
 
-user = get_user_model
 
 def all_templates(request):
     templates = TemplateStyle.objects.all()
@@ -38,21 +36,7 @@ def template_personal_info(request):
     if request.method == 'POST':
         form = PersonalInfoForm(request.POST, request.FILES)
         if form.is_valid():
-            personal_info = PersonalInfo(
-                first_name=form.cleaned_data['first_name'],
-                last_name=form.cleaned_data['last_name'],
-                address=form.cleaned_data['address'],
-                photo=form.cleaned_data['photo'],
-                city=form.cleaned_data['city'],
-                country=form.cleaned_data['country'],
-                phone=form.cleaned_data['phone'],
-                contact_email=form.cleaned_data['contact_email'],
-                about_me=form.cleaned_data['about_me'],
-                )
-            personal_info.save()
-            personal_info_id = personal_info.id
-            new_resume = Resume(user_id=request.user.id, personal_info_id=personal_info_id)
-            new_resume.save()
+            form.save()
             return redirect('template skills')
     form = PersonalInfoForm(initial={'user':request.user})
     context = {
@@ -67,7 +51,7 @@ def template_skills(request):
             form.save()
             return redirect('template skills')
 
-    # skills = Resume.skills.objects.all().filter(user=request.user)
+    skills = Skills.objects.all().filter(user=request.user)
     form = SkillsForm(initial={'user':request.user})
     context = {
         "form": form,
@@ -76,18 +60,18 @@ def template_skills(request):
     return render(request, 'resume/skills.html', context)
 
 def template_remove_skill(request, pk):
-    skill = Resume.skills.objects.get(pk=pk)
+    skill = Skills.objects.get(pk=pk)
     skill.delete()
     return redirect('template skills')
 
 def template_education(request):
     if request.method == 'POST':
-        form = Resume(request.POST)
+        form = EducationForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('template education')
 
-    educations = Resume.education.objects.all().filter(user=request.user)
+    educations = Education.objects.all().filter(user=request.user)
     form = EducationForm(initial={'user':request.user})
     context = {
         "form": form,
@@ -96,7 +80,7 @@ def template_education(request):
     return render(request, 'resume/education.html', context)
 
 def template_remove_education(request, pk):
-    education = Resume.education.objects.get(pk=pk)
+    education = Education.objects.get(pk=pk)
     education.delete()
     return redirect('template education')
 
@@ -110,7 +94,7 @@ def template_empl_history(request):
         else:
             return render(request, 'resume/employment_history.html')
 
-    empl_history = Resume.employment_history.objects.all().filter(user=request.user)
+    empl_history = EmploymentHistory.objects.all().filter(user=request.user)
     form = EmploymentHistoryForm(initial={'user':request.user})
     context = {
         "form": form,
@@ -119,7 +103,7 @@ def template_empl_history(request):
     return render(request, 'resume/employment_history.html', context)
 
 def template_remove_empl_history(request, pk):
-    empl = Resume.employment_history.objects.get(pk=pk)
+    empl = EmploymentHistory.objects.get(pk=pk)
     empl.delete()
     return redirect('template empl history')
 
@@ -133,7 +117,7 @@ def template_languages(request):
             print(form.errors)
             return render(request, 'resume/languages.html')
 
-    languages = Resume.languages.objects.all().filter(user=request.user)
+    languages = Languages.objects.all().filter(user=request.user)
     form = LanguagesForm(initial={'user':request.user})
     context = {
         "form": form,
@@ -143,7 +127,7 @@ def template_languages(request):
 
 
 def template_remove_language(request, pk):
-    language = Resume.languages.objects.get(pk=pk)
+    language = Languages.objects.get(pk=pk)
     language.delete()
     return redirect('template languages')
 
@@ -151,11 +135,11 @@ def template_remove_language(request, pk):
 def template_preview(request):
     profile = Profile.objects.get(pk=request.user.pk) 
     template = TemplateStyle.objects.get(pk=profile.template_selected)
-    personal_info = Resume.personal_infoersonalInfo.objects.all().filter(user=request.user)
-    skills = Resume.skills.objects.all().filter(user=request.user)
-    education = Resume.education.objects.all().filter(user=request.user)
-    empl_history = Resume.employment_history.objects.all().filter(user=request.user)
-    languages = Resume.languages.objects.all().filter(user=request.user)
+    personal_info = PersonalInfo.objects.all().filter(user=request.user)
+    skills = Skills.objects.all().filter(user=request.user)
+    education = Education.objects.all().filter(user=request.user)
+    empl_history = EmploymentHistory.objects.all().filter(user=request.user)
+    languages = Languages.objects.all().filter(user=request.user)
     context = {
         "template": template,
         "personal_info": personal_info,
@@ -170,14 +154,15 @@ def template_render(request):
     profile = Profile.objects.get(pk=request.user.pk) 
     template = TemplateStyle.objects.get(pk=profile.template_selected)
     style_path = f'/static/css/cv_templates/{template.css_file.name}'
-    personal_info = Resume.personal_info.objects.all().filter(user=request.user)
-    skills = Resume.skills.objects.all().filter(user=request.user)
-    education = Resume.education.objects.all().filter(user=request.user)
-    empl_history = Resume.employment_history.objects.all().filter(user=request.user)
-    languages = Resume.languages.objects.all().filter(user=request.user)
+    personal_info = PersonalInfo.objects.all().filter(user=request.user)
+    index_info = len(personal_info)-1
+    skills = Skills.objects.all().filter(user=request.user)
+    education = Education.objects.all().filter(user=request.user)
+    empl_history = EmploymentHistory.objects.all().filter(user=request.user)
+    languages = Languages.objects.all().filter(user=request.user)
     context = {
         "style_path": style_path,
-        "personal_info": personal_info,
+        "personal_info": personal_info[index_info],
         "skills": skills,
         "education": education,
         "empl_history": empl_history,
