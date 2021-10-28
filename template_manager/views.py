@@ -21,25 +21,18 @@ def template_details(request, pk):
     }
     return render(request, 'templates/template_details.html', context)
 
-def select_template(request, pk):
+
+def template_personal_info(request, pk):
     profile = Profile.objects.get(pk=request.user.pk)
     profile.template_selected = pk
     profile.save()
-    style = TemplateStyle.objects.get(pk=pk)
-    context = {
-        "style": style,
-    }
-    return render(request, 'resume/base_edit.html', context)
-
-
-def template_personal_info(request):
     if request.method == 'POST':
         form = PersonalInfoForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('template skills')
         else:
-            return redirect('personal info')
+            return redirect('personal info', pk)
     form = PersonalInfoForm(initial={'user':request.user})
     context = {
         "form": form,

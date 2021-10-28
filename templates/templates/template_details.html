@@ -1,20 +1,18 @@
 {% extends 'shared/base.html' %}
 
 {% block content %}
-    <div class="template-item-details">
-        <img src="{{template.image.url}}">
-    {% if request.user.is_authenticated %}
-    <div>
-        <a class="general-btn" href="{% url 'select template' template.id%}">Edit</a>
-    </div>
-    {% else %}
-    <div>
-        <a class="general-btn" href="{% url 'login' %}">Login to Edit</a>
-    </div>
-    {% endif %}
-    <div>
-        <a class="general-btn" href="{% url 'all templates'%}">Back</a>
-    </div>
+    <div style="width:75%; margin:auto;">
+        <div class="template-item-details">
+            <img src="{{template.image.url}}">
+        {% if request.user.is_authenticated %}
+            <a class="general-btn" href="{% url 'template personal info' template.id %}" style='width:120px;'>Edit</a>
+        {% else %}
+            <div>
+                <a class="general-btn" href="{% url 'login' %}" style='width:120px;'>Login to Edit</a>
+            </div>
+        {% endif %}
+            <a class="general-btn" href="{% url 'all templates'%}" style='width:120px;'>Back</a>
+        </div>
     </div>
     
 {% endblock content %}

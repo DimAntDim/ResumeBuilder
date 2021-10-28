@@ -13,7 +13,6 @@ def user_home_page(request):
     if profile.is_complete:
         profile = Profile.objects.get(pk=request.user.pk)
         personal_info = PersonalInfo.objects.all().filter(user=request.user)
-        index_info = len(personal_info)
         skills = Skills.objects.all().filter(user=request.user)
         education = Education.objects.all().filter(user=request.user)
         empl_history = EmploymentHistory.objects.all().filter(user=request.user)

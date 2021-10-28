@@ -529,19 +529,20 @@ a {
 
 
 .resume-info-wrapper {
+    width: 75%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-direction: row;
     align-items: center;
     flex-wrap: wrap;
+    margin: auto;
 }
 .resume-info-wrapper .left-side {
-    margin-left: 4%;
+    width: 30%;
 }
 
 .resume-info-wrapper .right-side {
     width: 50%;
-    margin-left: 20%;
 }
 
 .resume-info-wrapper .right-side img{

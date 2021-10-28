@@ -6,8 +6,8 @@
                 <div class="template-item-user-home">  
                     Personal info
                     <hr>
-                    <div class="template-item-user-home-img">
-                        <img scr={{personal_info.photo.url}}>
+                    <div class="resume-profile-image">
+                        <img src={{personal_info.photo.url}} alt="user photo" style="width: 216px;">
                     </div>
                         <li>Name: {{personal_info.first_name}} {{personal_info.last_name}}
                         <li>Address: {{personal_info.address}}
@@ -52,7 +52,7 @@
                         </ul>
                     <hr>
                     <hr>
-                        <a href="{% url 'template personal info' %}" class="general-btn" style="font-size: 15px;width: 120px;height: 30px;display: flex;flex-direction: column;justify-content: center;">Edit</a>
+                        <a href="{% url 'template personal info' profile.template_selected %}" class="general-btn" style="font-size: 15px;width: 120px;height: 30px;display: flex;flex-direction: column;justify-content: center;">Edit</a>
                         <a href="{% url 'template render' %}" class="general-btn" style="background-color:red; font-size: 15px;width: 120px;height: 30px;display: flex;flex-direction: column;justify-content: center;">Render</a>          
                 </div>
         {% else %}

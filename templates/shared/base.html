@@ -20,14 +20,11 @@
         {% endif %}
         {% block side_panel %}
         {% endblock side_panel %}
-        <div class="content">
-            {% block content%}
+        
+        {% block content%}
+        
+        {% endblock %}
 
-            
-            {% endblock %}
-        </div>
-    
-     
     <script src='{% static 'js/nav.js' %}'></script>
     </body>
 </html>
