@@ -38,6 +38,8 @@ def template_personal_info(request):
         if form.is_valid():
             form.save()
             return redirect('template skills')
+        else:
+            return redirect('personal info')
     form = PersonalInfoForm(initial={'user':request.user})
     context = {
         "form": form,
