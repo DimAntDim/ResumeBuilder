@@ -130,3 +130,23 @@ class Languages(models.Model):
     )
     def __str__(self):
         return self.language
+
+
+class Resume(models.Model):
+    user = models.ForeignKey(
+        CustomUser,
+        on_delete=models.CASCADE,
+        default='',
+        )
+    style = models.ForeignKey(
+        TemplateStyle,
+        on_delete=models.CASCADE,
+    )
+    personal_info = models.ForeignKey(
+        PersonalInfo,
+        on_delete=models.CASCADE,
+        )
+    skills = models.TextField()
+    education = models.TextField()
+    emp_history = models.TextField()
+    languages = models.TextField()

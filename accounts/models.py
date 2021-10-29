@@ -28,6 +28,9 @@ class Profile(models.Model):
     template_selected = models.IntegerField(
         default=1,
     )
+    number_of_saved_resumes = models.PositiveIntegerField(
+        default=0,
+    )
     class Meta:
         verbose_name_plural = ("Profiles")
 

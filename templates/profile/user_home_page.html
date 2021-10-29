@@ -3,58 +3,60 @@
 {% block content %}
     <div class="template-container-user-home">
         {% if personal_info %}
-                <div class="template-item-user-home">  
-                    Personal info
-                    <hr>
-                    <div class="resume-profile-image">
-                        <img src={{personal_info.photo.url}} alt="user photo" style="width: 216px;">
-                    </div>
-                        <li>Name: {{personal_info.first_name}} {{personal_info.last_name}}
-                        <li>Address: {{personal_info.address}}
-                        <li>City: {{personal_info.city}}
-                        <li>Phone: {{personal_info.phone}}
-                        <li>About me: {{personal_info.about_me}}
-                    <hr>
-                        Skills
-                        <ul>
-                        {% for skill in skills %}
-                            <li>
-                             {{skill|linebreaks}}
-                            </li>
-                        {% endfor %}
-                        </ul>
-                    <hr>
-                        Education
-                        <ul>
-                        {% for edu in education %}
-                            <li>
-                            {{edu|linebreaks}}
-                            </li>
-                        {% endfor %}
-                        </ul>
-                    <hr>
-                        Employment History
-                        <ul>
-                        {% for empl in empl_history %}
-                            <li>
-                            {{empl|linebreaks}}
-                            </li>
-                        {% endfor %}
-                        </ul>
-                    <hr>
-                        Languages
-                        <ul>
-                        {% for language in languages %}
-                            <li>
-                            {{language|linebreaks}}
-                            </li>
-                        {% endfor %}
-                        </ul>
-                    <hr>
-                    <hr>
-                        <a href="{% url 'template personal info' profile.template_selected %}" class="general-btn" style="font-size: 15px;width: 120px;height: 30px;display: flex;flex-direction: column;justify-content: center;">Edit</a>
-                        <a href="{% url 'template render' %}" class="general-btn" style="background-color:red; font-size: 15px;width: 120px;height: 30px;display: flex;flex-direction: column;justify-content: center;">Render</a>          
+            <div class="template-item-user-home">  
+                Personal info
+                <hr>
+                {% for info in personal_info %}
+                <div class="resume-profile-image">
+                    <img src={{info.photo.url}} alt="user photo" style="width: 216px;">
                 </div>
+                    <li>Name: {{info.first_name}} {{personal_info.last_name}}
+                    <li>Address: {{info.address}}
+                    <li>City: {{info.city}}
+                    <li>Phone: {{info.phone}}
+                    <li>About me: {{info.about_me}}
+                <hr>
+                {% endfor %}
+                    Skills
+                    <ul>
+                    {% for skill in skills %}
+                        <li>
+                            {{skill|linebreaks}}
+                        </li>
+                    {% endfor %}
+                    </ul>
+                <hr>
+                    Education
+                    <ul>
+                    {% for edu in education %}
+                        <li>
+                        {{edu|linebreaks}}
+                        </li>
+                    {% endfor %}
+                    </ul>
+                <hr>
+                    Employment History
+                    <ul>
+                    {% for empl in empl_history %}
+                        <li>
+                        {{empl|linebreaks}}
+                        </li>
+                    {% endfor %}
+                    </ul>
+                <hr>
+                    Languages
+                    <ul>
+                    {% for language in languages %}
+                        <li>
+                        {{language|linebreaks}}
+                        </li>
+                    {% endfor %}
+                    </ul>
+                <hr>
+                <hr>
+                    <a href="{% url 'template personal info' profile.template_selected %}" class="general-btn" style="font-size: 15px;width: 120px;height: 30px;display: flex;flex-direction: column;justify-content: center;">Edit</a>
+                    <a href="{% url 'template render' %}" class="general-btn" style="background-color:red; font-size: 15px;width: 120px;height: 30px;display: flex;flex-direction: column;justify-content: center;">Render</a>          
+            </div>
         {% else %}
             <h1>No saved data</h1>
         {% endif %}     
