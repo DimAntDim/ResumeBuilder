@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.core.files.storage import FileSystemStorage
+from django.contrib.postgres.fields import ArrayField
 
 CustomUser = get_user_model()
 css_storage =  FileSystemStorage(location='static/css/cv_templates')
@@ -142,11 +143,18 @@ class Resume(models.Model):
         TemplateStyle,
         on_delete=models.CASCADE,
     )
-    personal_info = models.ForeignKey(
-        PersonalInfo,
-        on_delete=models.CASCADE,
-        )
-    skills = models.TextField()
-    education = models.TextField()
-    emp_history = models.TextField()
-    languages = models.TextField()
+    personal_info = ArrayField(
+        ArrayField(models.TextField())
+    )
+    skills = ArrayField(
+        ArrayField(models.TextField())
+    )
+    education = ArrayField(
+        ArrayField(models.TextField())
+    )
+    emp_history = ArrayField(
+        ArrayField(models.TextField())
+    )
+    languages = ArrayField(
+        ArrayField(models.TextField())
+    )

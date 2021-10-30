@@ -5,6 +5,7 @@ from .models import Education, EmploymentHistory, Languages, PersonalInfo, Resum
 from config.settings import STATICFILES_DIRS
 import os
 from django.contrib.auth.decorators import login_required
+from django.core import serializers
 
 
 def all_templates(request):
@@ -171,24 +172,14 @@ def save_resume(request):
     profile.number_of_saved_resumes += 1
     profile.save()
     template = TemplateStyle.objects.get(pk=profile.template_selected)
-    personal_info = PersonalInfo.objects.all().filter(user=request.user)
-    skills = Skills.objects.all().filter(user=request.user)
-    education = Education.objects.all().filter(user=request.user)
-    empl_history = EmploymentHistory.objects.all().filter(user=request.user)
-    languages = Languages.objects.all().filter(user=request.user)
+    personal_info =PersonalInfo.objects.all().filter(user=request.user).values()
+    skills = Skills.objects.all().filter(user=request.user).values()
+    education = Education.objects.all().filter(user=request.user).values()
+    empl_history = EmploymentHistory.objects.all().filter(user=request.user).values()
+    languages = Languages.objects.all().filter(user=request.user).values()
     resume = Resume(
         style = template,
-        personal_info =  PersonalInfo(
-                            photo=personal_info.photo,
-                            first_name=personal_info.first_name,
-                            last_name=personal_info.last_name,
-                            address=personal_info.address,
-                            city=personal_info.city,
-                            country=personal_info.country,
-                            phone=personal_info.phone,
-                            contact_email=personal_info.contact_email,
-                            about_me=personal_info.about_me,
-                            ),
+        personal_info = personal_info,
         skills = skills,
         education = education,
         emp_history = empl_history,
