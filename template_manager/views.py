@@ -1,12 +1,17 @@
+from django.http import request
 from accounts.models import Profile
 from .form import EducationForm, EmploymentHistoryForm, LanguagesForm, PersonalInfoForm, SkillsForm
 from django.shortcuts import redirect, render
-from .models import Education, EmploymentHistory, Languages, PersonalInfo, Resume, Skills, TemplateStyle
+from .models import Education, EmploymentHistory, Languages, Resume, Skills, TemplateStyle
 from config.settings import STATICFILES_DIRS
 import os
 from django.contrib.auth.decorators import login_required
 from django.core import serializers
 
+
+def get_resume(request):
+    resume = Resume.objects.filter(user=request.user.pk).order_by('-pk')[0]
+    return resume
 
 def all_templates(request):
     templates = TemplateStyle.objects.all()
@@ -22,7 +27,6 @@ def template_details(request, pk):
     }
     return render(request, 'templates/template_details.html', context)
 
-
 def template_personal_info(request, pk):
     profile = Profile.objects.get(pk=request.user.pk)
     profile.template_selected = pk
@@ -33,7 +37,7 @@ def template_personal_info(request, pk):
             form.save()
             return redirect('template skills')
         else:
-            return redirect('personal info', pk)
+            return redirect('template personal info', pk)
     form = PersonalInfoForm(initial={'user':request.user})
     context = {
         "form": form,
@@ -47,8 +51,8 @@ def template_skills(request):
             form.save()
             return redirect('template skills')
 
-    skills = Skills.objects.all().filter(user=request.user)
-    form = SkillsForm(initial={'user':request.user})
+    skills = Skills.objects.all().filter(resume=get_resume(request))
+    form = SkillsForm(initial={'resume':get_resume(request)})
     context = {
         "form": form,
         "skills": skills,
@@ -67,8 +71,8 @@ def template_education(request):
             form.save()
             return redirect('template education')
 
-    educations = Education.objects.all().filter(user=request.user)
-    form = EducationForm(initial={'user':request.user})
+    educations = Education.objects.all().filter(resume=get_resume(request))
+    form = EducationForm(initial={'resume':get_resume(request)})
     context = {
         "form": form,
         "educations": educations,
@@ -90,8 +94,8 @@ def template_empl_history(request):
         else:
             return render(request, 'resume/employment_history.html')
 
-    empl_history = EmploymentHistory.objects.all().filter(user=request.user)
-    form = EmploymentHistoryForm(initial={'user':request.user})
+    empl_history = EmploymentHistory.objects.all().filter(resume=get_resume(request))
+    form = EmploymentHistoryForm(initial={'resume':get_resume(request)})
     context = {
         "form": form,
         "empl_history": empl_history,
@@ -113,8 +117,8 @@ def template_languages(request):
             print(form.errors)
             return render(request, 'resume/languages.html')
 
-    languages = Languages.objects.all().filter(user=request.user)
-    form = LanguagesForm(initial={'user':request.user})
+    languages = Languages.objects.all().filter(resume=get_resume(request))
+    form = LanguagesForm(initial={'resume':get_resume(request)})
     context = {
         "form": form,
         "languages": languages,
@@ -131,62 +135,42 @@ def template_remove_language(request, pk):
 def template_preview(request):
     profile = Profile.objects.get(pk=request.user.pk) 
     template = TemplateStyle.objects.get(pk=profile.template_selected)
-    personal_info = PersonalInfo.objects.all().filter(user=request.user)
-    skills = Skills.objects.all().filter(user=request.user)
-    education = Education.objects.all().filter(user=request.user)
-    empl_history = EmploymentHistory.objects.all().filter(user=request.user)
-    languages = Languages.objects.all().filter(user=request.user)
+    resume = get_resume(request)
+    personal_info = Resume.objects.filter(user_id=request.user.pk).order_by('-pk')[0]
+    photo = personal_info.photo.url
+    skills = Skills.objects.all().filter(resume_id=resume.pk)
+    education = Education.objects.all().filter(resume_id=resume.pk)
+    empl_history = EmploymentHistory.objects.all().filter(resume_id=resume.pk)
+    languages = Languages.objects.all().filter(resume_id=resume.pk)
     context = {
         "template": template,
-        "personal_info": personal_info,
+        "personal_info": personal_info.__dict__,
         "skills": skills,
         "education": education,
         "empl_history": empl_history,
         "languages": languages,
+        "photo": photo,
     }
     return render(request, "shared/resume_preview.html", context)
 
 def template_render(request):
     profile = Profile.objects.get(pk=request.user.pk)
-    profile.number_of_saved_resumes += 1
-    profile.save() 
+    resume = get_resume(request)
     template = TemplateStyle.objects.get(pk=profile.template_selected)
     style_path = f'/static/css/cv_templates/{template.css_file.name}'
-    personal_info = PersonalInfo.objects.all().filter(user=request.user)
-    skills = Skills.objects.all().filter(user=request.user)
-    education = Education.objects.all().filter(user=request.user)
-    empl_history = EmploymentHistory.objects.all().filter(user=request.user)
-    languages = Languages.objects.all().filter(user=request.user)
+    personal_info = Resume.objects.filter(user_id=request.user.pk).order_by('-pk')[0]
+    photo = personal_info.photo.url
+    skills = Skills.objects.all().filter(resume_id=resume.pk)
+    education = Education.objects.all().filter(resume_id=resume.pk)
+    empl_history = EmploymentHistory.objects.all().filter(resume_id=resume.pk)
+    languages = Languages.objects.all().filter(resume_id=resume.pk)
     context = {
-        "style_path": style_path,
-        "personal_info": personal_info[0],
+        "personal_info": personal_info.__dict__,
         "skills": skills,
+        "style_path": style_path,
         "education": education,
         "empl_history": empl_history,
         "languages": languages,
+        "photo": photo,
     }
     return render(request, "shared/resume_base.html", context)
-
-def save_resume(request):
-    profile = Profile.objects.get(pk=request.user.pk)
-    profile.number_of_saved_resumes += 1
-    profile.save()
-    template = TemplateStyle.objects.get(pk=profile.template_selected)
-    personal_info =PersonalInfo.objects.all().filter(user=request.user).values()
-    skills = Skills.objects.all().filter(user=request.user).values()
-    education = Education.objects.all().filter(user=request.user).values()
-    empl_history = EmploymentHistory.objects.all().filter(user=request.user).values()
-    languages = Languages.objects.all().filter(user=request.user).values()
-    resume = Resume(
-        style = template,
-        personal_info = personal_info,
-        skills = skills,
-        education = education,
-        emp_history = empl_history,
-        languages = languages,
-    )
-    resume.save()
-    return redirect('index')
-
-def delete_resume(request):
-    pass

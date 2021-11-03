@@ -1,8 +1,12 @@
-from .models import Education, EmploymentHistory, Languages, PersonalInfo, Skills
+from .models import Education, EmploymentHistory, Languages, Resume, Skills
 from django import forms
 from django.contrib.auth import get_user_model
 
 user_model = get_user_model()
+
+def get_resume():
+    resume = Resume.objects.get(user_id=user_model)
+    return resume
 class PersonalInfoForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -18,16 +22,15 @@ class PersonalInfoForm(forms.ModelForm):
         self.fields['contact_email'].widget.attrs.update({'class': 'input-field', 'placeholder':'Email'})
         self.fields['about_me'].widget.attrs.update({'class': 'input-field', 'rows': '3', 'placeholder':'Tell something about You'})
     class Meta:
-        model = PersonalInfo
+        model = Resume
         fields = '__all__'
 
 
 class SkillsForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['user'].widget = forms.HiddenInput()   
+        self.fields['resume'].widget = forms.HiddenInput()     
         self.fields['name'].widget.attrs.update({'class': 'input-field', 'placeholder':'Add skill'})
-
     class Meta:
         model = Skills
         fields = '__all__'
@@ -36,7 +39,7 @@ class SkillsForm(forms.ModelForm):
 class EducationForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['user'].widget = forms.HiddenInput()   
+        self.fields['resume'].widget = forms.HiddenInput()    
         self.fields['school_name'].widget.attrs.update({'class': 'input-field', 'placeholder':'School name'})
         self.fields['degree'].widget.attrs.update({'class': 'input-field', 'placeholder':'Degree'})
         self.fields['start'].widget = forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Select a date', 'type':'date'})
@@ -48,7 +51,7 @@ class EducationForm(forms.ModelForm):
 class EmploymentHistoryForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['user'].widget = forms.HiddenInput()   
+        self.fields['resume'].widget = forms.HiddenInput()   
         self.fields['company_name'].widget.attrs.update({'class': 'input-field', 'placeholder':'Company name'})
         self.fields['role'].widget.attrs.update({'class': 'input-field', 'placeholder':'Role'})
         self.fields['start'].widget = forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Select a date', 'type':'date'})
@@ -61,8 +64,8 @@ class EmploymentHistoryForm(forms.ModelForm):
 
 class LanguagesForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['user'].widget = forms.HiddenInput()   
+        super().__init__(*args, **kwargs)  
+        self.fields['resume'].widget = forms.HiddenInput()  
         self.fields['language'].widget.attrs.update({'class': 'input-field', 'placeholder':'Add language'})
     class Meta:
         model = Languages 

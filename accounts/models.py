@@ -1,4 +1,3 @@
-from template_manager.models import PersonalInfo
 from account_auth.models import CustomUser
 from django.db import models
 
@@ -27,9 +26,6 @@ class Profile(models.Model):
     )
     template_selected = models.IntegerField(
         default=1,
-    )
-    number_of_saved_resumes = models.PositiveIntegerField(
-        default=0,
     )
     class Meta:
         verbose_name_plural = ("Profiles")

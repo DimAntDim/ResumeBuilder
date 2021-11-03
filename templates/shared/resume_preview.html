@@ -7,8 +7,14 @@
     <hr>
         <b>Personal info</b>
         <ul>
-        {% for info in personal_info %}{% endfor %}
-           <li> {{info}} </li>    
+            <img src={{personal_info.photo.url}} alt="user photo" style="width: 216px;">
+            <li> {{personal_info.first_name}} </li> 
+            <li> {{personal_info.last_name}} </li> 
+            <li> {{personal_info.address}} </li> 
+            <li> {{personal_info.city}} </li>
+            <li> {{personal_info.contact_email}} </li>    
+            <li> {{personal_info.country}} </li> 
+            <li> {{personal_info.about_me}} </li> 
         </ul>
     <hr>
        <b> Skills</b>

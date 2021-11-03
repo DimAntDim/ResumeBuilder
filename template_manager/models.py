@@ -1,28 +1,12 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.core.files.storage import FileSystemStorage
-from django.contrib.postgres.fields import ArrayField
 
 CustomUser = get_user_model()
 css_storage =  FileSystemStorage(location='static/css/cv_templates')
-class TemplateStyle(models.Model):
-    name = models.CharField(
-        max_length=20,
-    )
-    image = models.ImageField(
-        upload_to = 'img/cv_templates/',
-        null = True,
-        blank = False,
-    )
-    css_file = models.FileField(
-        storage=css_storage,
-        null=True,
-    )
 
-    def __srt__(self):
-        return self.name
 
-class PersonalInfo(models.Model):
+class Resume(models.Model):
     user = models.ForeignKey(
         CustomUser,
         on_delete=models.CASCADE,
@@ -36,35 +20,58 @@ class PersonalInfo(models.Model):
     first_name = models.CharField(
         max_length=20,
         null=True,
+        blank=True,
     )
     last_name =models.CharField(
         max_length=20,
         null=True,
+        blank=True,
     )
     address = models.CharField(
         max_length=20,
         null=True,
+        blank=True,
     )
     city = models.CharField(
         max_length=20,
         null=True,
+        blank=True,
     )
     country = models.CharField(
         max_length=20,
         null=True,
+        blank=True,
     )
     phone = models.IntegerField()
     contact_email = models.EmailField(
         null=True,
     )
-    about_me = models.TextField()
+    about_me = models.TextField(
+        blank=True,
+    )
+
+class TemplateStyle(models.Model):
+    image = models.ImageField(
+        upload_to = 'img/cv_templates/',
+        null = True,
+        blank = False,
+    )
+    css_file = models.FileField(
+        storage=css_storage,
+        null=True,
+    )
+
+    def __srt__(self):
+        return self.name
+
+
 
 class Skills(models.Model):
-    user = models.ForeignKey(
-        CustomUser,
+    resume = models.ForeignKey(
+        Resume,
         on_delete=models.CASCADE,
-        default='',
-        )
+        null=True,
+    )
     name = models.CharField(
         max_length=60,
         null=True,
@@ -75,32 +82,39 @@ class Skills(models.Model):
         return self.name
 
 class Education(models.Model):
-    user = models.ForeignKey(
-        CustomUser,
+    resume = models.ForeignKey(
+        Resume,
         on_delete=models.CASCADE,
-        default='',
-        )
-
+        null=True,
+    )
     school_name = models.CharField(
         max_length=60,
         null=True,
+        blank=True,
     )
     degree = models.CharField(
         max_length=50,
         null=True,
+        blank=True,
     )
-    start = models.DateField()
-    end = models.DateField()
+    start = models.DateField(
+        null=True,
+        blank=True,
+    )
+    end = models.DateField(
+        null=True,
+        blank=True,
+    )
 
     def __str__(self):
         return f"School: {self.school_name}\nDegree: {self.degree}\nStart date: {self.start}\nEnd date: {self.end}"
 
 class EmploymentHistory(models.Model):
-    user = models.ForeignKey(
-        CustomUser,
+    resume = models.ForeignKey(
+        Resume,
         on_delete=models.CASCADE,
-        default='',
-        )
+        null=True,
+    )
     company_name = models.CharField(
         max_length=60,
         null=True,
@@ -111,19 +125,28 @@ class EmploymentHistory(models.Model):
         blank=True,
         null=True,
     )
-    start = models.DateField()
-    end = models.DateField()
-    description = models.TextField()
+    start = models.DateField(
+        null=True,
+        blank=True,
+    )
+    end = models.DateField(
+        null=True,
+        blank=True,
+    )
+    description = models.TextField(
+        null=True,
+        blank=True,
+    )
 
     def __str__(self):
         return f"Company: {self.company_name}\nRole: {self.role}\nStart date: {self.start}\nEnd date: {self.end}\nDesctiption: {self.description}"
 
 class Languages(models.Model):
-    user = models.ForeignKey(
-        CustomUser,
+    resume = models.ForeignKey(
+        Resume,
         on_delete=models.CASCADE,
-        default='',
-        )
+        null=True,
+    )
     language = models.CharField(
         max_length=60,
         null=True,
@@ -131,30 +154,3 @@ class Languages(models.Model):
     )
     def __str__(self):
         return self.language
-
-
-class Resume(models.Model):
-    user = models.ForeignKey(
-        CustomUser,
-        on_delete=models.CASCADE,
-        default='',
-        )
-    style = models.ForeignKey(
-        TemplateStyle,
-        on_delete=models.CASCADE,
-    )
-    personal_info = ArrayField(
-        ArrayField(models.TextField())
-    )
-    skills = ArrayField(
-        ArrayField(models.TextField())
-    )
-    education = ArrayField(
-        ArrayField(models.TextField())
-    )
-    emp_history = ArrayField(
-        ArrayField(models.TextField())
-    )
-    languages = ArrayField(
-        ArrayField(models.TextField())
-    )

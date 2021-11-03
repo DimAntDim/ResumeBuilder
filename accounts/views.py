@@ -1,4 +1,4 @@
-from template_manager.models import Education, EmploymentHistory, Languages, PersonalInfo, Skills
+from template_manager.models import Education, EmploymentHistory, Languages, Resume, Skills
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from accounts.models import Profile
@@ -12,18 +12,10 @@ def user_home_page(request):
     profile = Profile.objects.get(pk=request.user.pk)
     if profile.is_complete:
         profile = Profile.objects.get(pk=request.user.pk)
-        personal_info = PersonalInfo.objects.all().filter(user=request.user)
-        skills = Skills.objects.all().filter(user=request.user)
-        education = Education.objects.all().filter(user=request.user)
-        empl_history = EmploymentHistory.objects.all().filter(user=request.user)
-        languages = Languages.objects.all().filter(user=request.user)
+        personal_info = Resume.objects.all().filter(user=request.user.pk)
         context = {
             "profile": profile,
             "personal_info": personal_info,
-            "skills": skills,
-            "education": education,
-            "empl_history": empl_history,
-            "languages": languages,
         }
         return render(request, 'profile/user_home_page.html', context)
     else:
